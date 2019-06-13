@@ -4,6 +4,6 @@ TODO LIST:
 - [ ] Command Design Pattern
 - [ ] Observer/Observable Design Pattern
 - [ ] Proxy
+- [ ] GameWorldPRoxy
 - [ ] MapView
 - [ ] PointsView
-

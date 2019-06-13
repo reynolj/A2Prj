@@ -1,0 +1,12 @@
+To be done by night of 6/14/19
+
+- [ ] Shrink IGameObject
+- [ ] Update MoveableGameObject 
+- [ ] Update PlayerShip 
+- [ ] Update Missile 
+- [ ] Update GameWorld 
+- [ ] Add IGameObject
+- [ ] Add GameWorldProxy
+- [ ] Add MapView
+- [ ] Add PointsView
+- [ ] Iterator Design Pattern
