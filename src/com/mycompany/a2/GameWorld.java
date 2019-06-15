@@ -620,6 +620,8 @@ public class GameWorld extends Observable implements IGameWorld{
 				System.out.println("ERROR: The PlayerShip speed cannot go above the maximum!, speed is: " + 
 						PlayerShip.getInstance().getSpeed());
 			}
+		} else {
+			System.out.println("ERROR: No player ship in Game World.");
 		}
 		System.out.println(); //for readability
 	}
@@ -639,6 +641,8 @@ public class GameWorld extends Observable implements IGameWorld{
 				System.out.println("ERROR: The PlayerShip speed cannot go below the minimum!, speed is: " + 
 						PlayerShip.getInstance().getSpeed());
 			}
+		} else {
+			System.out.println("ERROR: No player ship in Game World.");
 		}
 		System.out.println(); //for readability
 	}

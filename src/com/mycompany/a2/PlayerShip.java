@@ -79,7 +79,7 @@ public class PlayerShip extends Ship implements ISteerable{
 	 */
 	public String toString() {
 		String parentDesc = super.toString();
-		String localDesc = " Missile launcher dir = " + this.steerableMissileLauncher.getDirection();
+		String localDesc = " Missile launcher dir = " + this.getLauncherDirection();
 		String header = "Player Ship: ";
 		
 		return header + parentDesc + localDesc;
