@@ -99,6 +99,9 @@ public class Game extends Form {
 					case 'L':
 						gw.launchMissile();
 						break;
+					case '<':
+						gw.turnPSMissileLauncherLeft();
+						break;
 					case '>':
 						gw.turnPSMissileLauncherRight();
 						break;

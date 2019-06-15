@@ -94,6 +94,15 @@ public class PlayerShip extends Ship implements ISteerable{
 	}
 	
 	/**
+	 * Turns missile launcher left.
+	 * Implements ISteerable
+	 */
+	public void turnLauncherLeft() {
+		PS.steerableMissileLauncher.turnLeft();
+	}
+
+	
+	/**
 	 * Turns missile launcher right.
 	 * Implements ISteerable
 	 */
@@ -134,20 +143,24 @@ public class PlayerShip extends Ship implements ISteerable{
 	 * Turning right (clockwise) is a increase in the degree angle according to the specification.
 	 * We can avoid having to check to see if we've gone above 359 degrees by adding 365 degrees and using mod 360.
 	 * This will result in the direction to increase by 5 degrees.
+	 * The missile launcher's direction will change with the ships direction, aswell.
 	 * @see com.mycompany.a1.ISteerable#turnRight()
 	 */
 	public void turnRight() {
 		this.setDirection((this.getDirection()+365) % 360);
+		this.steerableMissileLauncher.turnRight();
 	}
 	
 	/**
 	 * Turning left (counter clockwise) is an decrease in the degree angle according to the specification.
 	 * We can avoid having to check to see if we've gone below 0 degrees by adding 355 and using mod 360.
 	 * This will result in the direction to decrease by 5 degrees.
+	 * The missile launcher's direction will change with the ships direction, aswell.
 	 * @see com.mycompany.a1.ISteerable#turnLeft()
 	 */
 	public void turnLeft() {
 		this.setDirection((this.getDirection()+355) % 360);	
+		this.steerableMissileLauncher.turnLeft();
 	}
 	
 
@@ -165,4 +178,3 @@ public class PlayerShip extends Ship implements ISteerable{
 		steerableMissileLauncher.setSpeed(this.getSpeed());
 	}
 }
-

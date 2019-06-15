@@ -242,6 +242,25 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 
 	/**
+	 * Command '<'
+	 * Turns the player's missile launcher to the left only if a PlayerShip exists in the GameObject vector
+	 * Displays an error if a PlayerShip does not exist. 
+	 */
+	public void turnPSMissileLauncherLeft() {
+		System.out.println("- TURN MISSILE LAUNCHER LEFT");
+		
+		if (PlayerShip.isMissing() != true) {
+			PlayerShip.getInstance().turnLauncherLeft();
+			System.out.println("Player Missile Launcher turned Left. New direction: " 
+			                    + PlayerShip.getInstance().getLauncherDirection());
+		}
+		else {
+			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
+		}
+		System.out.println(); //for readability
+	}
+	
+	/**
 	 * Command '>'
 	 * Turns the player's missile launcher to the right only if a PlayerShip exists in the GameObject vector
 	 * Displays an error if a PlayerShip does not exist. 
@@ -634,6 +653,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().turnLeft();
 			System.out.println("The PlayerShip has turned, direction is now: " +
 			                    PlayerShip.getInstance().getDirection());
+		} else {
+			System.out.println("ERROR: No player ship in Game World.");
 		}
 		System.out.println(); //for readability
 	}
@@ -648,6 +669,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().turnRight();
 			System.out.println("The PlayerShip has turned, direction is now: " +
 			                    PlayerShip.getInstance().getDirection());
+		} else {
+			System.out.println("ERROR: No player ship in Game World.");
 		}
 		System.out.println(); //for readability
 	}
@@ -662,6 +685,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().jump();
 			System.out.println("The PlayerShip has jumped to hyperspace:\n" +
 			                    PlayerShip.getInstance());
+		} else {
+			System.out.println("ERROR: No player ship in Game World.");
 		}
 		System.out.println(); //for readability
 	}
@@ -674,6 +699,9 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public void tick() {
 		System.out.println("- TICK");
+		// "tick" the clock
+		++clock;
+		
 		// We need another Vector to hold GameObjects that must be removed at the same time.
 		// We can't remove GameObjects inside of the foreach loop because it throws exceptions.
 		Vector<GameObject> removeItems = new Vector<GameObject>();
@@ -688,16 +716,20 @@ public class GameWorld extends Observable implements IGameWorld{
 					removeItems.add(i);
 				}
 			}
+			// Blink the SpaceStation if the proper amount of time has elapsed
+			else if (i instanceof SpaceStation) {
+				int blinkRate = ((SpaceStation) i).getBlinkRate();
+				if (blinkRate != 0 && clock % blinkRate == 0) {
+					((SpaceStation) i).toggleLight();
+				}
+			}
 		}
 		// Remove all the GameObjects that needed to be removed all at once.
 		store.removeAll(removeItems);
 		// Empty out our temporary GameObject Vector.
 		removeItems.clear();
 		
-		++clock;
-		
 		System.out.println("Game clock: " + clock);
-		map();
+		System.out.println(); //for readability
 	}
-	
 }
