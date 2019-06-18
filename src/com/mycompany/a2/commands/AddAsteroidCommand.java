@@ -1,15 +1,21 @@
 package com.mycompany.a2.commands;
 
 import com.codename1.ui.Command;
+import com.codename1.ui.events.ActionEvent;
+import com.mycompany.a2.GameWorld;
 
 public class AddAsteroidCommand extends Command {
 
-	private Gameworld gw;
+	private GameWorld gw;
 	
-	public AddAsteroidCommand(Gameworld gw) {
+	public AddAsteroidCommand(GameWorld gw) {
 		super( "Add Asteroid");
 		this.gw = gw;
-		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		gw.addNewAsteroid();
 	}
 
 }
