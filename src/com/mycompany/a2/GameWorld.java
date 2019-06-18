@@ -294,14 +294,23 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Note: Proximity preconditions not yet implemented
 	 */
 	public void reloadMissiles() {
+		boolean spaceStationExist = false;
 		System.out.println("- RELOAD MISSILES");
-		
-		if (PlayerShip.isMissing() != true) {
+		for (GameObject i : store) {
+			if (i instanceof SpaceStation) {
+				spaceStationExist = true;
+				break;
+			}
+		}
+		if (!spaceStationExist) {
+			System.out.println("ERROR: No space station in Game World");
+		}
+		if (PlayerShip.isMissing()) {
+			System.out.println("ERROR: No player ship in Game World");
+		}
+		if (PlayerShip.isMissing() != true && spaceStationExist) {
 			PlayerShip.getInstance().reloadMissiles();
 			System.out.println("The player ship's missile supply has been restored to maximum.\n" + PlayerShip.getInstance() );
-		}
-		else {
-			System.out.println("ERROR: No player ship in Game World");
 		}
 		System.out.println(); //for readability
 	}
