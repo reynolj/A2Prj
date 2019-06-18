@@ -220,7 +220,7 @@ public class GameWorld extends Observable implements IGameWorld{
 				if (i instanceof PlayerShip) {
 					store.remove(i);
 					PlayerShip.deleteShip();
-					this.addPlayerShip();
+					//this.addPlayerShip();
 					break;
 				}
 			}
