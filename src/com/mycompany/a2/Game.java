@@ -95,7 +95,7 @@ public class Game extends Form {
 		KillAsteroidAsteroidCommand myKAA = new KillAsteroidAsteroidCommand(gw);
 		addKeyListener('x', myKAA);
 		
-		KillAsteroidNPS myKAN = new KillAsteroidNPS(gw);
+		KillAsteroidNPSCommand myKAN = new KillAsteroidNPSCommand(gw);
 		addKeyListener('I', myKAN);
 		
 		TickCommand myTick = new TickCommand(gw);
