@@ -42,7 +42,7 @@ public class Game extends Form {
 		
 		FirePSMissileCommand myFireMissile = new FirePSMissileCommand(gw);
 		fireMissile.setCommand(myFireMissile);
-		addKeyListener(-90, myFireMissile);
+		addKeyListener(-90, myFireMissile); //spacebar
 		
 		JumpToHyperspaceCommand myJump = new JumpToHyperspaceCommand(gw);
 		jump.setCommand(myJump);
@@ -51,25 +51,25 @@ public class Game extends Form {
 		//Key bindings
 		IncreasePSSpeedCommand myIncrease = new IncreasePSSpeedCommand(gw);
 		addKeyListener('i', myIncrease);
-		addKeyListener(-91, myIncrease);
+		addKeyListener(-91, myIncrease); //up arrow
 		
-		DecreasePSSpeedCommand myDecrease = new IncreasePSSpeedCommand(gw);
+		DecreasePSSpeedCommand myDecrease = new DecreasePSSpeedCommand(gw);
 		addKeyListener('d', myDecrease);
-		addKeyListener(-92, myDecrease);
+		addKeyListener(-92, myDecrease); //down arrow
 		
 		TurnPSLeftCommand myTurnLeft = new TurnPSLeftCommand(gw);
 		addKeyListener('l', myTurnLeft);
-		addKeyListener(-93, myTurnLeft);
+		addKeyListener(-93, myTurnLeft); //left arrow
 		
 		TurnPSRightCommand myTurnRight = new TurnPSRightCommand(gw);
 		addKeyListener('r', myTurnRight);
-		addKeyListener(-94, myTurnRight);
+		addKeyListener(-94, myTurnRight); //right arrow
 		
 		TurnLauncherLeftCommand myTurnLauncherLeft = new TurnLauncherLeftCommand(gw);
-		addKeyListener('<', myTurnLauncherLeft);
+		addKeyListener(44, myTurnLauncherLeft);
 		
 		TurnLauncherRightCommand myTurnLauncherRight = new TurnLauncherRightCommand(gw);
-		addKeyListener('>', myTurnLauncherRight);
+		addKeyListener(46, myTurnLauncherRight);
 		
 		LaunchNPSMissileCommand myLaunchMissile = new LaunchNPSMissileCommand(gw);
 		addKeyListener('L', myLaunchMissile);
@@ -104,6 +104,7 @@ public class Game extends Form {
 		QuitCommand myQuit = new QuitCommand(gw);
 		addKeyListener('Q', myQuit);
 		
+		//Side menu
 		/*
 		 * AboutCommand myAbout = new AboutCommand(gw);
 		 * SoundCommand mySound = new SoundCommand(gw);
@@ -113,6 +114,7 @@ public class Game extends Form {
 		 */
 		//
 		play();
+		//getCommand();
 	}
 	
 	/**
