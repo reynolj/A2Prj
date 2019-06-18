@@ -216,7 +216,15 @@ public class GameWorld extends Observable implements IGameWorld{
 	private void killPS() {
 		if ( --playerLives != 0 ) {
 			System.out.println("Player Lives: " + playerLives);
-			PlayerShip.getInstance().resetPlayerShip();
+			for (GameObject i : store) {
+				if (i instanceof PlayerShip) {
+					store.remove(i);
+					PlayerShip.deleteShip();
+					this.addPlayerShip();
+					break;
+				}
+			}
+			//PlayerShip.getInstance().resetPlayerShip();
 		} else {
 			gameOver();
 		}
