@@ -753,4 +753,14 @@ public class GameWorld extends Observable implements IGameWorld{
 		System.out.println("Game clock: " + clock);
 		System.out.println(); //for readability
 	}
+	
+	/**
+	 * Command 'q'
+	 * Quits the game.
+	 * Removes all objects.
+	 * Ends Game.
+	 */
+	public void quit() {
+		
+	}
 }
