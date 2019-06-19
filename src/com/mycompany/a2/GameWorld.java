@@ -3,6 +3,9 @@ package com.mycompany.a2;
 import java.util.Observable;
 import java.util.Vector;
 
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
+
 /**
  * Defines a GameWorld Object.
  */
@@ -179,8 +182,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			if ( PlayerShip.getInstance().getMissiles() > 0 ) { 
 				Missile missile = new Missile((Ship) PlayerShip.getInstance());
 				store.add(missile);
-				updateViews();
 				PlayerShip.getInstance().decrementMissileCount();
+				updateViews();
 				System.out.println("The player ship has fired a missile");
 				System.out.println(missile);
 			} else {
@@ -835,6 +838,13 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Ends Game.
 	 */
 	public void quit() {
-		
-	}
+	    Boolean bOk = Dialog.show("Confirm quit", "Are you sure you want to quit?", "Ok", "Cancel");
+	    //[in a dialog if you only want to display the okay option, 
+	    //use Dialog.show("Title of dialog", "Text to display on dialog", "Ok", null);]
+	    if (bOk){
+	        	//instead of System.exit(0), CN1 recommends using:
+	            // This helps to quit the application
+		         Display.getInstance().exitApplication();
+	    }
+	  }
 }
