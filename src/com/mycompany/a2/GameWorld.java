@@ -38,7 +38,73 @@ public class GameWorld extends Observable implements IGameWorld{
 		clock = 0;
 	}
 
-/******************************** Commands for Second Delivery **************************/ 	
+
+	//****************************Helper Methods****************************//
+	/**
+	 * Convenient function that simply calls:
+	 * this.setChanged() and
+	 * this.notifyObservers(new GameWorldProxy(this));
+	 */
+	private void updateViews() {
+		this.setChanged();
+		this.notifyObservers(new GameWorldProxy(this));
+	}
+	
+	//****************************Getter Methods****************************//
+	
+	/**
+	 *Getter for player score
+	 * @return String
+	 */
+	public String getScore() {
+		return String.valueOf(playerScore);
+	}
+
+	/**
+	 *Getter for player missile count
+	 *Returns String as number if ship exists
+	 *Returns "N/A" if ship does not exist
+	 * @return String object
+	 */
+	public String getMissiles() {
+		String ret = "";
+		if (PlayerShip.isMissing() != true) {
+			ret = String.valueOf(PlayerShip.getInstance().getMissiles());
+		} else {
+			ret = String.valueOf(0);
+		}
+		
+		return ret; 
+	}
+
+	/**
+	 * Getter for player lives
+	 * @return String 
+	 */
+	public String getLives() {
+		return String.valueOf(playerLives);
+	}
+
+
+	private String twoDigits(int v) {
+	    return v < 10 ? "0" + v : "" + v;
+	}
+	
+	/**
+	 * Getter for time
+	 * return String
+	 */
+	public String getTime() {
+		int minutes, seconds;
+		
+		minutes = clock/60000;
+		seconds = clock/1000%60;
+		
+		return twoDigits(minutes) + " : " + twoDigits(seconds);
+	}
+	
+	//****************************Command Methods****************************//
+	
 	/**
 	 * Command 'a'
 	 * Creates a new Asteroid object in the GameWorld. Adds it to the GameObject vector
@@ -46,6 +112,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	public void addNewAsteroid() {
 		Asteroid asteroid = new Asteroid();
 		store.add(asteroid);
+		updateViews();
 		//Display
 		System.out.println("- ADD ASTEROID");
 		System.out.println("A new asteroid has spawned.");
@@ -59,6 +126,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	public void addNonPlayerShip() {
 		NonPlayerShip NPS = new NonPlayerShip();
 		store.add(NPS);
+		updateViews();
 		//Display
 		System.out.println("- ADD NPS");
 		System.out.println("An enemy ship has spawned.");
@@ -72,6 +140,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	public void addSpaceStation() {
 		SpaceStation BSS = new SpaceStation();
 		store.add(BSS);
+		updateViews();
 		//Display
 		System.out.println("- ADD BLINKING SPACE STATION");
 		System.out.println("A blinking space station has spawned");
@@ -89,10 +158,10 @@ public class GameWorld extends Observable implements IGameWorld{
 		if (PlayerShip.isMissing() == true) {
 			PlayerShip PS = PlayerShip.getInstance();
 			store.add(PS);
+			updateViews();
 			System.out.println("Your ship has spawned.");
 			System.out.println( PS );
-		}
-		else {
+		} else {
 			System.out.println("ERROR: Only one player ship allowed at one time.");
 		}
 		System.out.println(); //for readability
@@ -110,15 +179,14 @@ public class GameWorld extends Observable implements IGameWorld{
 			if ( PlayerShip.getInstance().getMissiles() > 0 ) { 
 				Missile missile = new Missile((Ship) PlayerShip.getInstance());
 				store.add(missile);
+				updateViews();
 				PlayerShip.getInstance().decrementMissileCount();
 				System.out.println("The player ship has fired a missile");
 				System.out.println(missile);
-			}
-			else {
+			} else {
 				System.out.println("ERROR: Missiles depleted.");
 			}
-		}
-		else {
+		} else {
 			System.out.println("ERROR: No ship to shoot missile.");
 		}
 		System.out.println(); //for readability
@@ -149,14 +217,13 @@ public class GameWorld extends Observable implements IGameWorld{
 				Missile missile = new Missile((Ship) NPS);
 				store.add(missile);
 				NPS.decrementMissileCount();
+				updateViews();
 				System.out.println("The enemy ship has fired a missile");
 				System.out.println(missile);
-			}
-			else {
+			} else {
 				System.out.println("ERROR: Missiles depleted.");
 			}
-		}
-		else {
+		} else {
 			System.out.println("ERROR: No existing enemy ship.");
 		}
 		System.out.println(); //for readability
@@ -171,8 +238,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		
 		if (store.isEmpty()) {
 			toPrint += "Game World is devoid of Game objects and happiness. The player wept.\n";
-		}
-		else {
+		} else {
 			for (GameObject i : store) {
 				toPrint += i.toString() +"\n";
 			}
@@ -186,27 +252,22 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Command 'p'
 	 * Prints out the game stats (score, missile count, game time and lives left).
 	 */
-	public String displayStats() {
+	public void displayStats() {
 		String missiles = "";
-		String ret = "";
 		System.out.println("- PRINT GAME STATS");
 		
 		if ( PlayerShip.isMissing() != true ){
 			missiles += String.valueOf(PlayerShip.getInstance().getMissiles());
-		}
-		else {
+		} else {
 			missiles += "N/A";
 		}
 		
-		ret = "Player Score: " + playerScore +
-			  "PS Missile Count: " + missiles +
-			  "Game time: " + clock  +
-			  "Remaining lives: " + playerLives;
+		System.out.println( "Player Score: " + playerScore + "\n" +
+			  "PS Missile Count: " + missiles + "\n" +
+			  "Game time: " + clock  + "\n" +
+			  "Remaining lives: " + playerLives );
 		System.out.println(); //for readability
-		return ret;
 	}
-
-/******************************** Commands for Third Delivery **************************/
 	
 	/**	
 	 *  Helper Function for Commands: 'e', 'c', 'h'
@@ -261,8 +322,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().turnLauncherLeft();
 			System.out.println("Player Missile Launcher turned Left. New direction: " 
 			                    + PlayerShip.getInstance().getLauncherDirection());
-		}
-		else {
+			updateViews();
+		} else {
 			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
 		}
 		System.out.println(); //for readability
@@ -280,8 +341,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().turnLauncherRight();
 			System.out.println("Player Missile Launcher turned right. New direction: " 
 			                    + PlayerShip.getInstance().getLauncherDirection());
-		}
-		else {
+			updateViews();
+		} else {
 			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
 		}
 		System.out.println(); //for readability
@@ -311,6 +372,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		if (PlayerShip.isMissing() != true && spaceStationExist) {
 			PlayerShip.getInstance().reloadMissiles();
 			System.out.println("The player ship's missile supply has been restored to maximum.\n" + PlayerShip.getInstance() );
+			updateViews();
 		}
 		System.out.println(); //for readability
 	}
@@ -359,6 +421,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.removeElement(asteroid);
 			store.removeElement(missile);
 			System.out.println("A player ship's missile has killed an asteroid.\nPlayer Score: " + playerScore);
+			updateViews();
 		}
 		System.out.println(); //for readability
 		
@@ -408,6 +471,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.removeElement(NPS);
 			store.removeElement(missile);
 			System.out.println("A player ship's missile has killed an enemy ship.\nPlayer Score: " + playerScore);
+			updateViews();
 		}
 		System.out.println(); //for readability
 	}
@@ -427,8 +491,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		
 		if (PlayerShip.isMissing() != true) {
 			PS = PlayerShip.getInstance();
-		}
-		else {
+		} else {
 			System.out.println("ERROR: No player ship in Game World.");
 		}
 		
@@ -452,6 +515,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.removeElement(NPSmissile);
 			System.out.println ("An enemy ship's missile has killed the player ship.");
 			killPS();
+			updateViews();
 		}
 		System.out.println(); //for readability
 	}
@@ -492,6 +556,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.removeElement(asteroid);
 			System.out.println("An asteroid has collided with the player ship, killing each other");
 			killPS();
+			updateViews();
 		}
 		System.out.println(); //for readability
 	}
@@ -522,7 +587,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		
 		if (PlayerShip.isMissing() != true) {
 			PS = PlayerShip.getInstance();
-		}else{
+		} else {
 			System.out.println("ERROR: No player ship in Game World.");
 		}
 		
@@ -532,6 +597,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.removeElement(NPS);
 			System.out.println("An enemy ship has collided with the player ship, killing each other.");
 			killPS();
+			updateViews();
 		}
 		System.out.println(); //for readability
 	}
@@ -573,6 +639,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.removeElement(asteroid1);
 			store.removeElement(asteroid2);
 			System.out.println("Two asteroids have collided and killed each other.");
+			updateViews();
 		}
 		System.out.println(); //for readability
 	}
@@ -617,6 +684,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.removeElement(asteroid);
 			store.removeElement(NPS);
 			System.out.println("An enemy ship has colided with an asteroid, killing each other.\n");
+			updateViews();
 		}
 		System.out.println(); //for readability
 	}
@@ -633,6 +701,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			if (PlayerShip.getInstance().increaseSpeed() == true) {
 				System.out.println("The PlayerShip speed has increased to: " + 
 									PlayerShip.getInstance().getSpeed());
+				updateViews();
 			} else {
 				System.out.println("ERROR: The PlayerShip speed cannot go above the maximum!, speed is: " + 
 						PlayerShip.getInstance().getSpeed());
@@ -654,6 +723,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			if (PlayerShip.getInstance().decreaseSpeed() == true) {
 				System.out.println("The PlayerShip speed has decreased to: " + 
 									PlayerShip.getInstance().getSpeed());
+				updateViews();
 			} else {
 				System.out.println("ERROR: The PlayerShip speed cannot go below the minimum!, speed is: " + 
 						PlayerShip.getInstance().getSpeed());
@@ -674,6 +744,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().turnLeft();
 			System.out.println("The PlayerShip has turned, direction is now: " +
 			                    PlayerShip.getInstance().getDirection());
+			updateViews();
 		} else {
 			System.out.println("ERROR: No player ship in Game World.");
 		}
@@ -690,6 +761,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().turnRight();
 			System.out.println("The PlayerShip has turned, direction is now: " +
 			                    PlayerShip.getInstance().getDirection());
+			updateViews();
 		} else {
 			System.out.println("ERROR: No player ship in Game World.");
 		}
@@ -706,6 +778,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().jump();
 			System.out.println("The PlayerShip has jumped to hyperspace:\n" +
 			                    PlayerShip.getInstance());
+			updateViews();
 		} else {
 			System.out.println("ERROR: No player ship in Game World.");
 		}
@@ -751,6 +824,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		removeItems.clear();
 		
 		System.out.println("Game clock: " + clock);
+		updateViews();
 		System.out.println(); //for readability
 	}
 	

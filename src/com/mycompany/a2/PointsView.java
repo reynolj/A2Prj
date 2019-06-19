@@ -12,7 +12,7 @@ public class PointsView extends Container implements Observer {
 	private Label pointsValueLabel;
 	
 	public PointsView() {
-		Label pointsTextLabel = new Label("Points");
+		Label pointsTextLabel = new Label("Points:");
 		
 		pointsValueLabel = new Label("empty");
 		
@@ -29,8 +29,14 @@ public class PointsView extends Container implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		IGameWorld gw = (IGameWorld) data;
-		this.pointsValueLabel.setText("" + gw.displayStats());
+		this.pointsValueLabel.setText(
+			    "Score"  	+ gw.getScore() + 
+				"\tLives" 	+ gw.getLives() +
+				"\tMissiles"+ gw.getMissiles() +
+				"\tSound"	+ " " +
+				"\tTime"	+ gw.getTime()
+				);
 		this.repaint();
-		
+		System.out.println("In update - Pointsview");
 	}
 }

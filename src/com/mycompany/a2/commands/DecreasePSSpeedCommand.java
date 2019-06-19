@@ -13,7 +13,6 @@ public class DecreasePSSpeedCommand extends Command {
 	public DecreasePSSpeedCommand(GameWorld gw) {
 		super("Decrease Speed");
 		this.gw = gw;
-		
 	}
 	
 	/**

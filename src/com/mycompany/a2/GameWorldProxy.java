@@ -4,159 +4,28 @@ import java.util.Observable;
 
 public class GameWorldProxy extends Observable implements IGameWorld {
 	private GameWorld gw;
-	
-	public GameWorldProxy(GameWorld gw) {
+
+	public GameWorldProxy (GameWorld gw) {
 		this.gw = gw;
 	}
 	
 	@Override
-	public void addNewAsteroid() {
-		gw.addNewAsteroid();
+	public String getScore() {
+		return gw.getScore();
 	}
 
 	@Override
-	public void addNonPlayerShip() {
-		gw.addNonPlayerShip();
-		
+	public String getMissiles() {
+		return gw.getMissiles();
 	}
 
 	@Override
-	public void addPlayerShip() {
-		gw.addPlayerShip();
+	public String getLives() {
+		return gw.getLives();
 	}
 
 	@Override
-	public void addSpaceStation() {
-		gw.addSpaceStation();
+	public String getTime() {
+		return gw.getTime();
 	}
-
-	@Override
-	public void decreaseSpeed() {
-		gw.decreaseSpeed();
-	}
-
-	@Override
-	public String displayStats() {
-		return gw.displayStats();
-		
-	}
-
-	@Override
-	public void fireMissile() {
-		gw.fireMissile();	
-		
-	}
-
-	@Override
-	public void hyperSpaceJump() {
-		gw.hyperSpaceJump();
-		
-	}
-
-	@Override
-	public void increaseSpeed() {
-		gw.increaseSpeed();
-	}
-
-	@Override
-	public void init() {
-		
-	}
-
-	@Override
-	public void kill_NPS_Missile_PS() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void kill_NPS_PS() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void killAsteroidAsteroid() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void killAsteroidMissile() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void killAsteroidNPS() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void killAsteroidPS() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void killMissileNPS() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void launchMissile() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void map() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void quit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void reloadMissiles() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void tick() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void turnPSLeft() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void turnPSMissileLauncherLeft() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void turnPSMissileLauncherRight() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void turnPSRight() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
