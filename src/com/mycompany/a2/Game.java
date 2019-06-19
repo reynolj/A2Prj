@@ -128,15 +128,7 @@ public class Game extends Form {
 		this.add(BorderLayout.NORTH,northContainer);
 		this.add(BorderLayout.WEST,westContainer);
 		
-		
-		
-		
-		
 		this.show();
-		
-		
-		
-		
 		
 		//ALL COMMANDS
 		//Control Panel Buttons

@@ -21,6 +21,8 @@ public class JumpToHyperspaceCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.hyperSpaceJump();
+		if (e.getKeyEvent() != -1) {
+			gw.hyperSpaceJump();
+		}
 	}
 }

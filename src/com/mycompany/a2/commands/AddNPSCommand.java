@@ -22,7 +22,8 @@ public class AddNPSCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.addNonPlayerShip();
+		if (e.getKeyEvent() != -1) {
+			gw.addNonPlayerShip();
+		}
 	}
-
 }
