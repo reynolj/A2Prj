@@ -29,8 +29,7 @@ public class PointsView extends Container implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		IGameWorld gw = (IGameWorld) data;
-		this.pointsValueLabel.setText("" + gw.displayStats());
+		this.pointsValueLabel.setText("");
 		this.repaint();
-		
 	}
 }
