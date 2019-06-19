@@ -57,14 +57,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * @return String
 	 */
 	public String getScore() {
-		String ret = "";
-		
-		if (PlayerShip.isMissing() != true) {
-			ret = String.valueOf(playerScore);
-		} else {
-			ret = "N/A";
-		}
-		return ret;
+		return String.valueOf(playerScore);
 	}
 
 	/**
@@ -75,14 +68,13 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public String getMissiles() {
 		String ret = "";
-		
 		if (PlayerShip.isMissing() != true) {
 			ret = String.valueOf(PlayerShip.getInstance().getMissiles());
 		} else {
-			ret = "N/A";
+			ret = String.valueOf(0);
 		}
 		
-		return ret;
+		return ret; 
 	}
 
 	/**
@@ -90,35 +82,25 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * @return String 
 	 */
 	public String getLives() {
-		String ret = "";
-		
-		if (PlayerShip.isMissing() != true) {
-			ret = String.valueOf(playerLives);
-		} else {
-			ret = "N/A";
-		}
-		
-		return ret;
+		return String.valueOf(playerLives);
 	}
 
 
+	private String twoDigits(int v) {
+	    return v < 10 ? "0" + v : "" + v;
+	}
+	
 	/**
 	 * Getter for time
 	 * return String
 	 */
 	public String getTime() {
-		String ret = "";
 		int minutes, seconds;
 		
-		if (PlayerShip.isMissing() != true) {
-			minutes = clock/60000;
-			seconds = clock/1000%60;
-			ret = minutes + " : " + seconds;
-		} else {
-			ret = "N/A";
-		}
+		minutes = clock/60000;
+		seconds = clock/1000%60;
 		
-		return ret;
+		return twoDigits(minutes) + " : " + twoDigits(seconds);
 	}
 	
 	//****************************Command Methods****************************//
