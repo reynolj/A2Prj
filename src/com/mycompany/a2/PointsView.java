@@ -58,6 +58,6 @@ public class PointsView extends Container implements Observer {
 		this.timeLabel.setText(gw.getTime());
 		
 		this.repaint();
-		//System.out.println("In update - Pointsview");
+		gw.points();
 	}
 }
