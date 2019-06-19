@@ -22,6 +22,8 @@ public class AddPlayerShipCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.addPlayerShip();
+		if (e.getKeyEvent() != -1) {
+			gw.addPlayerShip();
+		}
 	}
 }

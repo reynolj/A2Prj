@@ -21,6 +21,8 @@ public class AddSpaceStationCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.addSpaceStation();
+		if (e.getKeyEvent() != -1) {
+			gw.addSpaceStation();
+		}
 	}
 }
