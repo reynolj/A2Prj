@@ -7,4 +7,6 @@ public interface IGameWorld {
 	String getLives();
 	String getTime();
 	String getSound();
+	void map();
+	void points();
 }

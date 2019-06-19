@@ -22,11 +22,11 @@ public class PointsView extends Container implements Observer {
 		Label soundTextLabel = new Label("Sound: ");
 		Label timeTextLabel = new Label("Time: ");
 		
-		scoreLabel = new Label("0");
-		livesLabel = new Label("0");
-		missilesLabel = new Label("0");
-		soundLabel = new Label("On");
-		timeLabel = new Label("0");
+		scoreLabel = new Label("");
+		livesLabel = new Label("");
+		missilesLabel = new Label("");
+		soundLabel = new Label("");
+		timeLabel = new Label("");
 		
 		scoreTextLabel.getAllStyles().setFgColor(ColorUtil.rgb(0,0,255));
 		

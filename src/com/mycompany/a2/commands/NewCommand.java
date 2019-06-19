@@ -21,6 +21,6 @@ public class NewCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//gw.New();
+		gw._new();
 	}
 }

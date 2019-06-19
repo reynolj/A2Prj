@@ -21,6 +21,6 @@ public class UndoCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//gw.Undo();
+		gw.undo();
 	}
 }

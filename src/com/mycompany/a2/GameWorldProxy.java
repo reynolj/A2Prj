@@ -33,4 +33,14 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	public String getSound() {
 		return gw.getSound();
 	}
+
+	@Override
+	public void map() {
+		gw.map();
+	}
+
+	@Override
+	public void points() {
+		gw.points();
+	}
 }

@@ -21,6 +21,6 @@ public class SaveCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//gw.Save();
+		gw.save();
 	}
 }
