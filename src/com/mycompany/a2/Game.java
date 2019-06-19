@@ -1,19 +1,61 @@
 package com.mycompany.a2;
 
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Button;
+import com.codename1.ui.CheckBox;
+import com.codename1.ui.Command;
+import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
+import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.layouts.BorderLayout;
 import com.mycompany.a2.commands.*;
 
 public class Game extends Form {
 	private GameWorld gw;	
+	private MapView mv;
+	private PointsView pv;
 	
 	public Game() {
 		gw = GameWorld.getInstance();
 		gw.init();
+		pv = new PointsView();
+		mv = new MapView();
+		gw.addObserver(pv);
+		gw.addObserver(mv);
+		
+		//Form definition
+		this.setLayout(new BorderLayout());
+		
+		//Create a Toolbar
+		Toolbar myToolbar = new Toolbar();
+		setToolbar(myToolbar);
+		
+		// Create a Toolbar Title
+		TextField myTextField = new TextField("CSc133 A2Prj");
+		myToolbar.setTitleComponent(myTextField);
+		
+		//Side menu
+				/*
+				 * AboutCommand myAbout = new AboutCommand(gw);
+				 * SoundCommand mySound = new SoundCommand(gw);
+				 * NewCommand myNew = new NewCommand(gw);
+				 * SaveCommand mySave = new SaveCommand(gw);
+				 * UndoCommand myUndo = new UndoCommand(gw);
+				 */
+				//
+		Command setSound = new Command("Sound On Checked");
+		CheckBox checkSoundOn = new CheckBox("Sound On");
+		checkSoundOn.getAllStyles().setBgTransparency(255);
+		checkSoundOn.getAllStyles().setBgColor(ColorUtil.LTGRAY);
+		//set "SideComponent" property of the command object to the check box
+		setSound.putClientProperty("Sound On", checkSoundOn);
+		
+		myToolbar.addComponentToSideMenu(checkSoundOn);
+		
 		
 		
 		//TODO: add aesthetics
@@ -104,15 +146,7 @@ public class Game extends Form {
 		QuitCommand myQuit = new QuitCommand(gw);
 		addKeyListener('Q', myQuit);
 		
-		//Side menu
-		/*
-		 * AboutCommand myAbout = new AboutCommand(gw);
-		 * SoundCommand mySound = new SoundCommand(gw);
-		 * NewCommand myNew = new NewCommand(gw);
-		 * SaveCommand mySave = new SaveCommand(gw);
-		 * UndoCommand myUndo = new UndoCommand(gw);
-		 */
-		//
+		
 		play();
 		//getCommand();
 	}
