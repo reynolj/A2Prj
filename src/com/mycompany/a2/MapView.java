@@ -13,18 +13,20 @@ public class MapView extends Container implements Observer {
 	
 	public MapView() {
 		Container myView = new Container();
-		myView.getAllStyles().setPadding(Component.BOTTOM,50);
-		myView.getAllStyles().setPadding(Component.TOP,50);
-		myView.getAllStyles().setPadding(Component.LEFT,50);
-		myView.getAllStyles().setPadding(Component.RIGHT,50);
+		myView.getAllStyles().setPadding(Component.BOTTOM,384);
+		myView.getAllStyles().setPadding(Component.TOP,384);
+		myView.getAllStyles().setPadding(Component.LEFT,512);
+		myView.getAllStyles().setPadding(Component.RIGHT,512);
 		myView.getAllStyles().setBorder(Border.createLineBorder(1,ColorUtil.BLACK));
 	
 		this.add(myView);
 	}
 	@Override
 	public void update(Observable observable, Object data) {
-		// TODO Auto-generated method stub
+		IGameWorld gw = (IGameWorld) data;
+		gw.map();
+		this.repaint();
+		//System.out.println("In update - Pointsview");
 		
 	}
-
 }
