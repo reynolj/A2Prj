@@ -65,7 +65,7 @@ public class Game extends Form {
 		setSound.putClientProperty("Sound On", checkSoundOn);
 		
 		// Sidemenu Quit Command
-		Command sideMenuQuit = new Command("Quit");
+		QuitCommand sideMenuQuit = new QuitCommand(gw);
 		
 		// Add commands to Sidemenu
 		myToolbar.addComponentToSideMenu(checkSoundOn);		// Sound checkbox
