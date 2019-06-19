@@ -74,7 +74,6 @@ public class Game extends Form {
 		
 		
 		//Create some buttons to put in the West Side
-		//TODO: add aesthetics
 		Button addAsteroid		= 		new Button("Add Asteroid");
 		Button addNPS			= 		new Button("Add Enemy Ship");
 		Button addSpaceStation	=	 	new Button("Add Space Station");
@@ -120,8 +119,8 @@ public class Game extends Form {
 		// East and South are unused.
 		
 		//North
-		//Container northContainer = new Container(new BoxLayout(BoxLayout.X_AXIS));
-		//northContainer.add(pv);
+		//
+		//Container exists inside PointView
 		
 		//West
 		Container westContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
@@ -133,7 +132,8 @@ public class Game extends Form {
 		westContainer.add(jump);
 		
 		//Center
-		//Container centerContainer = new Container();
+		//
+		//Container exists inside MapView
 		
 		this.add(BorderLayout.NORTH,pv);
 		this.add(BorderLayout.WEST,westContainer);
@@ -219,109 +219,6 @@ public class Game extends Form {
 		QuitCommand myQuit = new QuitCommand(gw);
 		addKeyListener('Q', myQuit);
 		
-		
-		//play();
-		//getCommand();
 	}
-	
-	/**
-	 * Initiate play
-	 */
-	private void play()
-	{
-		Label myLabel=new Label("Enter a Command:"); 
-		this.addComponent(myLabel);
-		final TextField myTextField = new TextField(); 
-		this.addComponent(myTextField);
-		this.show();
-		// Test input as long as something has been input
-		myTextField.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent evt) {
-				String sCommand=myTextField.getText().toString(); myTextField.clear();
-				if (!sCommand.isEmpty()) {
-					switch (sCommand.charAt(0)){ 
-					case 'a' :
-						gw.addNewAsteroid();
-						break;
-					case 'b':
-						gw.addSpaceStation();
-						break;
-					case 'c':
-						gw.killAsteroidPS();
-						break;	
-					case 'd':
-						gw.decreaseSpeed();
-						break;
-					case 'e':
-						gw.killMissileNPS();
-						break;	
-					case 'f':
-						gw.fireMissile();
-						break;	
-					case 'h':
-						gw.kill_NPS_PS();
-						break;	
-					case 'i':
-						gw.increaseSpeed();
-						break;
-					case 'j':
-						gw.hyperSpaceJump();
-						break;
-					case 'k':
-						gw.killAsteroidMissile();
-						break;	
-					case 'l':
-						gw.turnPSLeft();
-						break;
-					case 'm':
-						gw.map();
-						break;
-					case 'n':
-						gw.reloadMissiles();
-						break;
-					case 'p':
-						gw.displayStats();
-						break;	
-					case 'q':
-						break;
-					case 'r':
-						gw.turnPSRight();
-						break;
-					case 's':
-						gw.addPlayerShip();
-						break;	
-					case 't':
-						gw.tick();
-						break;
-					case 'x':
-						gw.killAsteroidAsteroid();
-						break;
-					case 'y':
-						gw.addNonPlayerShip();
-						break;
-					case 'E':
-						gw.kill_NPS_Missile_PS();
-						break;	
-					case 'I':
-						gw.killAsteroidNPS();
-						break;	
-					case 'L':
-						gw.launchMissile();
-						break;
-					case '<':
-						gw.turnPSMissileLauncherLeft();
-						break;
-					case '>':
-						gw.turnPSMissileLauncherRight();
-						break;
-					default:
-						System.out.println();
-						System.out.println("Error: " + sCommand.charAt(0) + " is not a command.");
-						break;
-					}	
-				}
-				
-			}
-		});
-	}
+
 }
