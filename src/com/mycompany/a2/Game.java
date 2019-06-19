@@ -12,6 +12,8 @@ import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
+import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.plaf.Border;
 import com.mycompany.a2.commands.*;
 
 public class Game extends Form {
@@ -47,6 +49,8 @@ public class Game extends Form {
 				 * UndoCommand myUndo = new UndoCommand(gw);
 				 */
 				//
+		
+		// Sidemenu Sound Command Checkbox
 		Command setSound = new Command("Sound On Checked");
 		CheckBox checkSoundOn = new CheckBox("Sound On");
 		checkSoundOn.getAllStyles().setBgTransparency(255);
@@ -54,10 +58,15 @@ public class Game extends Form {
 		//set "SideComponent" property of the command object to the check box
 		setSound.putClientProperty("Sound On", checkSoundOn);
 		
-		myToolbar.addComponentToSideMenu(checkSoundOn);
+		// Sidemenu Quit Command
+		Command sideMenuQuit = new Command("Quit");
+		
+		// Add commands to Sidemenu
+		myToolbar.addComponentToSideMenu(checkSoundOn);		// Sound checkbox
+		myToolbar.addCommandToSideMenu(sideMenuQuit);		// Quit command
 		
 		
-		
+		//Create some buttons to put in the West Side
 		//TODO: add aesthetics
 		Button addAsteroid		= 		new Button("Add Asteroid");
 		Button addNPS			= 		new Button("Add Enemy Ship");
@@ -66,6 +75,67 @@ public class Game extends Form {
 		Button fireMissile		=		new Button("Fire Player Missile");
 		Button jump				=		new Button("Jump To Hyperspace");
 		//Add aesthetics below
+		addAsteroid.getAllStyles().setBgColor(ColorUtil.BLUE);
+		addAsteroid.getAllStyles().setBgTransparency(128);
+		addAsteroid.getAllStyles().setFgColor(ColorUtil.WHITE);
+		addAsteroid.getAllStyles().setBorder(Border.createBevelRaised());
+		
+		addNPS.getAllStyles().setBgColor(ColorUtil.BLUE);
+		addNPS.getAllStyles().setBgTransparency(128);
+		addNPS.getAllStyles().setFgColor(ColorUtil.WHITE);
+		addNPS.getAllStyles().setBorder(Border.createBevelRaised());
+		
+		addSpaceStation.getAllStyles().setBgColor(ColorUtil.BLUE);
+		addSpaceStation.getAllStyles().setBgTransparency(128);
+		addSpaceStation.getAllStyles().setFgColor(ColorUtil.WHITE);
+		addSpaceStation.getAllStyles().setBorder(Border.createBevelRaised());
+		
+		addPlayerShip.getAllStyles().setBgColor(ColorUtil.BLUE);
+		addPlayerShip.getAllStyles().setBgTransparency(128);
+		addPlayerShip.getAllStyles().setFgColor(ColorUtil.WHITE);
+		addPlayerShip.getAllStyles().setBorder(Border.createBevelRaised());
+		
+		fireMissile.getAllStyles().setBgColor(ColorUtil.BLUE);
+		fireMissile.getAllStyles().setBgTransparency(128);
+		fireMissile.getAllStyles().setFgColor(ColorUtil.WHITE);
+		fireMissile.getAllStyles().setBorder(Border.createBevelRaised());
+		
+		jump.getAllStyles().setBgColor(ColorUtil.BLUE);
+		jump.getAllStyles().setBgTransparency(128);
+		jump.getAllStyles().setFgColor(ColorUtil.WHITE);
+		jump.getAllStyles().setBorder(Border.createBevelRaised());
+		
+		/////////////////////////
+		// BorderLayout
+		// North: PlayerView
+		// West: Controls (command buttons)
+		// Center: MapView
+		// East and South are unused.
+		
+		//North
+		Container northContainer = new Container(new BoxLayout(BoxLayout.X_AXIS));
+		northContainer.add(pv);
+		
+		//West
+		Container westContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+		westContainer.add(addAsteroid);
+		westContainer.add(addNPS);
+		westContainer.add(addSpaceStation);
+		westContainer.add(addPlayerShip);
+		westContainer.add(fireMissile);
+		westContainer.add(jump);
+		
+		this.add(BorderLayout.NORTH,northContainer);
+		this.add(BorderLayout.WEST,westContainer);
+		
+		
+		
+		
+		
+		this.show();
+		
+		
+		
 		
 		
 		//ALL COMMANDS
@@ -77,7 +147,7 @@ public class Game extends Form {
 		addNPS.setCommand(myaddNPS);
 		
 		AddSpaceStationCommand myaddST = new AddSpaceStationCommand(gw);
-		addNPS.setCommand(myaddST);
+		addSpaceStation.setCommand(myaddST);
 		
 		AddPlayerShipCommand myaddPS = new AddPlayerShipCommand(gw);
 		addPlayerShip.setCommand(myaddPS);
@@ -147,7 +217,7 @@ public class Game extends Form {
 		addKeyListener('Q', myQuit);
 		
 		
-		play();
+		//play();
 		//getCommand();
 	}
 	

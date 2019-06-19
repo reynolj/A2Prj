@@ -186,8 +186,9 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Command 'p'
 	 * Prints out the game stats (score, missile count, game time and lives left).
 	 */
-	public void displayStats() {
+	public String displayStats() {
 		String missiles = "";
+		String ret = "";
 		System.out.println("- PRINT GAME STATS");
 		
 		if ( PlayerShip.isMissing() != true ){
@@ -197,13 +198,12 @@ public class GameWorld extends Observable implements IGameWorld{
 			missiles += "N/A";
 		}
 		
-		System.out.println(
-			"Player Score: " + playerScore + "\n" +
-			"PS Missile Count: " + missiles + "\n" +
-			"Game time: " + clock + "\n" +
-			"Remaining lives: " + playerLives
-		);
+		ret = "Player Score: " + playerScore +
+			  "PS Missile Count: " + missiles +
+			  "Game time: " + clock  +
+			  "Remaining lives: " + playerLives;
 		System.out.println(); //for readability
+		return ret;
 	}
 
 /******************************** Commands for Third Delivery **************************/
