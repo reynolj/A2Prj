@@ -6,4 +6,5 @@ public interface IGameWorld {
 	String getMissiles();
 	String getLives();
 	String getTime();
+	String getSound();
 }

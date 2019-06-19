@@ -25,7 +25,7 @@ public class PointsView extends Container implements Observer {
 		scoreLabel = new Label("0");
 		livesLabel = new Label("0");
 		missilesLabel = new Label("0");
-		soundLabel = new Label("on");
+		soundLabel = new Label("On");
 		timeLabel = new Label("0");
 		
 		scoreTextLabel.getAllStyles().setFgColor(ColorUtil.rgb(0,0,255));
@@ -57,16 +57,7 @@ public class PointsView extends Container implements Observer {
 		this.soundLabel.setText(gw.getSound());
 		this.timeLabel.setText(gw.getTime());
 		
-		/*
-		this.pointsValueLabel.setText(
-			    "Score"  	+ gw.getScore() + 
-				"\tLives" 	+ gw.getLives() +
-				"\tMissiles"+ gw.getMissiles() +
-				"\tSound"	+ " " +
-				"\tTime"	+ gw.getTime()
-				);
-				*/
 		this.repaint();
-		System.out.println("In update - Pointsview");
+		//System.out.println("In update - Pointsview");
 	}
 }

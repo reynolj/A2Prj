@@ -63,6 +63,28 @@ public class GameWorld extends Observable implements IGameWorld{
 	public String getScore() {
 		return String.valueOf(playerScore);
 	}
+	
+	/**
+	 * Command 'q'
+	 * Quits the game.
+	 * Removes all objects.
+	 * Ends Game.
+	 */
+	public void quit() {
+	    Boolean bOk = Dialog.show("Confirm quit", "Are you sure you want to quit?", "Ok", "Cancel");
+	    //[in a dialog if you only want to display the okay option, 
+	    //use Dialog.show("Title of dialog", "Text to display on dialog", "Ok", null);]
+	    if (bOk){
+	        	//instead of System.exit(0), CN1 recommends using:
+	            // This helps to quit the application
+		         Display.getInstance().exitApplication();
+	    }
+	  }
+	
+	public void about() {
+		 Boolean bOk = Dialog.show("About", 
+				 "Jake Reynolds & Sam Hendryx \nCSC 133 - Asteroids", "Ok", null);
+	}
 
 	/**
 	 *Getter for player missile count
@@ -93,26 +115,21 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Retruns status of sound
 	 * @return Boolean
 	 */
-	private String getSound() {
+	public String getSound() {
 		return (soundOn == true) ? "On" : "Off";
 	}
 
 
-	private String twoDigits(int v) {
+	/*private String twoDigits(int v) {
 	    return v < 10 ? "0" + v : "" + v;
-	}
+	}*/
 	
 	/**
 	 * Getter for time
 	 * return String
 	 */
 	public String getTime() {
-		int minutes, seconds;
-		
-		minutes = clock/60000;
-		seconds = clock/1000%60;
-		
-		return twoDigits(minutes) + " : " + twoDigits(seconds);
+		return String.valueOf(clock);
 	}
 	
 	//****************************Command Methods****************************//
@@ -125,6 +142,8 @@ public class GameWorld extends Observable implements IGameWorld{
 		soundOn = !soundOn;
 		updateViews();
 	}
+	
+	
 	
 	/**
 	 * Command 'a'
@@ -848,21 +867,4 @@ public class GameWorld extends Observable implements IGameWorld{
 		updateViews();
 		System.out.println(); //for readability
 	}
-	
-	/**
-	 * Command 'q'
-	 * Quits the game.
-	 * Removes all objects.
-	 * Ends Game.
-	 */
-	public void quit() {
-	    Boolean bOk = Dialog.show("Confirm quit", "Are you sure you want to quit?", "Ok", "Cancel");
-	    //[in a dialog if you only want to display the okay option, 
-	    //use Dialog.show("Title of dialog", "Text to display on dialog", "Ok", null);]
-	    if (bOk){
-	        	//instead of System.exit(0), CN1 recommends using:
-	            // This helps to quit the application
-		         Display.getInstance().exitApplication();
-	    }
-	  }
 }

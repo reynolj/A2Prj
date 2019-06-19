@@ -4,15 +4,15 @@ import com.codename1.ui.Command;
 import com.codename1.ui.events.ActionEvent;
 import com.mycompany.a2.GameWorld;
 
-public class SoundCommand extends Command {
+public class SaveCommand extends Command {
 	private GameWorld gw;
 
 	/**
 	 * Constructor
 	 * @param gw GameWorld object
 	 */
-	public SoundCommand(GameWorld gw) {
-		super("Sound On");
+	public SaveCommand(GameWorld gw) {
+		super("Save");
 		this.gw = gw;
 	}
 	
@@ -21,6 +21,6 @@ public class SoundCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.toggleSound();
+		//gw.Save();
 	}
 }

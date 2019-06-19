@@ -42,18 +42,10 @@ public class Game extends Form {
 		myToolbar.setTitleComponent(myTitleLabel);
 		
 		//Side menu
-		Label menuHeaderLabel = new Label("Menu");
+		Label menuHeaderLabel = new Label("File");
 		//menuHeaderLabel.setTextPosition(Component.CENTER);
 		menuHeaderLabel.getAllStyles().setFgColor(ColorUtil.WHITE);
 		myToolbar.addComponentToSideMenu(menuHeaderLabel);
-				/*
-				 * AboutCommand myAbout = new AboutCommand(gw);
-				 * SoundCommand mySound = new SoundCommand(gw);
-				 * NewCommand myNew = new NewCommand(gw);
-				 * SaveCommand mySave = new SaveCommand(gw);
-				 * UndoCommand myUndo = new UndoCommand(gw);
-				 */
-				//
 		
 		// Sidemenu Sound Command Checkbox
 		SoundCommand setSound = new SoundCommand(gw);
@@ -63,12 +55,21 @@ public class Game extends Form {
 		checkSoundOn.getAllStyles().setFgColor(ColorUtil.WHITE);
 		//set "SideComponent" property of the command object to the check box
 		setSound.putClientProperty("Sound On", checkSoundOn);
+		checkSoundOn.setSelected(true);
+		checkSoundOn.setCommand(setSound);
 		
-		// Sidemenu Quit Command
+		AboutCommand myAbout	 = new AboutCommand(gw);
+		NewCommand myNew	 	 = new NewCommand(gw);
+		SaveCommand mySave	 	 = new SaveCommand(gw);
+		UndoCommand myUndo  	 = new UndoCommand(gw);
 		QuitCommand sideMenuQuit = new QuitCommand(gw);
 		
 		// Add commands to Sidemenu
+		myToolbar.addCommandToSideMenu(myNew);
+		myToolbar.addCommandToSideMenu(mySave);
+		myToolbar.addCommandToSideMenu(myUndo);
 		myToolbar.addComponentToSideMenu(checkSoundOn);		// Sound checkbox
+		myToolbar.addCommandToSideMenu(myAbout);
 		myToolbar.addCommandToSideMenu(sideMenuQuit);		// Quit command
 		
 		

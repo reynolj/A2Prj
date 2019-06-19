@@ -28,4 +28,9 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	public String getTime() {
 		return gw.getTime();
 	}
+
+	@Override
+	public String getSound() {
+		return gw.getSound();
+	}
 }
