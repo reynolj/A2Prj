@@ -18,6 +18,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	
 	private Vector<GameObject> store = new Vector<GameObject>();
 	private int playerScore, playerLives, clock;
+	private boolean soundOn = true;
 
 	
 	private GameWorld() {}
@@ -87,6 +88,14 @@ public class GameWorld extends Observable implements IGameWorld{
 	public String getLives() {
 		return String.valueOf(playerLives);
 	}
+	
+	/**
+	 * Retruns status of sound
+	 * @return Boolean
+	 */
+	private String getSound() {
+		return (soundOn == true) ? "On" : "Off";
+	}
 
 
 	private String twoDigits(int v) {
@@ -107,6 +116,15 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	//****************************Command Methods****************************//
+	
+	/**
+	 * Sound toggle
+	 * Toggles sound
+	 */
+	public void toggleSound() {
+		soundOn = !soundOn;
+		updateViews();
+	}
 	
 	/**
 	 * Command 'a'

@@ -56,7 +56,7 @@ public class Game extends Form {
 				//
 		
 		// Sidemenu Sound Command Checkbox
-		Command setSound = new Command("Sound On Checked");
+		SoundCommand setSound = new SoundCommand(gw);
 		CheckBox checkSoundOn = new CheckBox("Sound On");
 		checkSoundOn.getAllStyles().setBgTransparency(255);
 		checkSoundOn.getAllStyles().setBgColor(ColorUtil.LTGRAY);
