@@ -4,6 +4,7 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Command;
+import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -37,10 +38,14 @@ public class Game extends Form {
 		setToolbar(myToolbar);
 		
 		// Create a Toolbar Title
-		TextField myTextField = new TextField("CSc133 A2Prj");
-		myToolbar.setTitleComponent(myTextField);
+		Label myTitleLabel = new Label("CSc133 A2Prj");
+		myToolbar.setTitleComponent(myTitleLabel);
 		
 		//Side menu
+		Label menuHeaderLabel = new Label("Menu");
+		//menuHeaderLabel.setTextPosition(Component.CENTER);
+		menuHeaderLabel.getAllStyles().setFgColor(ColorUtil.WHITE);
+		myToolbar.addComponentToSideMenu(menuHeaderLabel);
 				/*
 				 * AboutCommand myAbout = new AboutCommand(gw);
 				 * SoundCommand mySound = new SoundCommand(gw);
@@ -55,6 +60,7 @@ public class Game extends Form {
 		CheckBox checkSoundOn = new CheckBox("Sound On");
 		checkSoundOn.getAllStyles().setBgTransparency(255);
 		checkSoundOn.getAllStyles().setBgColor(ColorUtil.LTGRAY);
+		checkSoundOn.getAllStyles().setFgColor(ColorUtil.WHITE);
 		//set "SideComponent" property of the command object to the check box
 		setSound.putClientProperty("Sound On", checkSoundOn);
 		
@@ -113,8 +119,8 @@ public class Game extends Form {
 		// East and South are unused.
 		
 		//North
-		Container northContainer = new Container(new BoxLayout(BoxLayout.X_AXIS));
-		northContainer.add(pv);
+		//Container northContainer = new Container(new BoxLayout(BoxLayout.X_AXIS));
+		//northContainer.add(pv);
 		
 		//West
 		Container westContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
@@ -125,8 +131,12 @@ public class Game extends Form {
 		westContainer.add(fireMissile);
 		westContainer.add(jump);
 		
-		this.add(BorderLayout.NORTH,northContainer);
+		//Center
+		//Container centerContainer = new Container();
+		
+		this.add(BorderLayout.NORTH,pv);
 		this.add(BorderLayout.WEST,westContainer);
+		this.add(BorderLayout.CENTER,mv);
 		
 		this.show();
 		
