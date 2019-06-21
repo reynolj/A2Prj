@@ -3,14 +3,15 @@ TODO LIST:
 LEGEND:
 [ ] is incomplete
 [/] is partially complete
-[x] is complete
 [?] is unverified complete
-
+[x] is complete
 
 - [?] Iterator Design Pattern
 - [x] Command Design Pattern
 - [x] Observer/Observable Design Pattern
 - [/] Proxy
 - [/] GameWorldProxy
-- [/] MapView
 - [?] PointsView
+- [/] MapView
+- [ ] Animation
+- [ ] Sound
