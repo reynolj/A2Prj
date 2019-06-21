@@ -13,7 +13,7 @@ public class AddNPSCommand extends Command {
 	private GameWorld gw;
 	
 	public AddNPSCommand(GameWorld gw) {
-		super("Add NPS");
+		super("Add Enemy Ship");
 		this.gw = gw;
 	}
 	
