@@ -430,7 +430,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Verifies that both exist before doing so.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void killAsteroidMissile() {
+	public void PS_Shoots_Asteroid() {
 		Asteroid asteroid = null;
 		Missile missile = null;
 		
@@ -480,7 +480,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Increases the Player Score.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void killMissileNPS() {
+	public void pS_Shoots_NPS() {
 		NonPlayerShip NPS = null;
 		Missile missile = null;
 		
@@ -529,7 +529,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Removes a life from Player. Ends Game if the Player has no more lives left.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void kill_NPS_Missile_PS () {
+	public void NPS_Shoots_PS () {
 		Missile NPSmissile = null;
 		PlayerShip PS = null;
 		
@@ -573,7 +573,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * of the game board and removes a life.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void killAsteroidPS() {
+	public void collision_Asteroid_PS() {
 		Asteroid asteroid = null;
 		PlayerShip PS = null;
 		
@@ -614,7 +614,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Resets PlayerShip's location and removes a life.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void kill_NPS_PS() {
+	public void collision_NPS_PS() {
 		PlayerShip PS = null;
 		NonPlayerShip NPS = null;
 		
@@ -654,7 +654,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * the GameObject vector before doing so. Removes both asteroids from the game board.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void killAsteroidAsteroid() {
+	public void collision_Asteroid_Asteroid() {
 		Asteroid asteroid1 = null;
 		Asteroid asteroid2 = null;
 		
@@ -696,7 +696,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * in the GameObject vector first. Removes both from the game board.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void killAsteroidNPS() {
+	public void collision_Asteroid_NPS() {
 		Asteroid asteroid = null;
 		NonPlayerShip NPS = null;
 

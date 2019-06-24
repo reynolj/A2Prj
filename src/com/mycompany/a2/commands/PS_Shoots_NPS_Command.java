@@ -4,15 +4,15 @@ import com.codename1.ui.Command;
 import com.codename1.ui.events.ActionEvent;
 import com.mycompany.a2.GameWorld;
 
-public class KillAsteroidAsteroidCommand extends Command {
-	private GameWorld gw;
+public class PS_Shoots_NPS_Command extends Command {
+private GameWorld gw;
 	
 	/**
 	 * Constructor
-	 * @param gw GameWorld objection
+	 * @param gw GameWorld object
 	 */
-	public KillAsteroidAsteroidCommand(GameWorld gw) {
-		super("Asteroids Collide");
+	public PS_Shoots_NPS_Command(GameWorld gw) {
+		super("Kill NPS with PS Missile");
 		this.gw = gw;
 	}
 	
@@ -21,6 +21,6 @@ public class KillAsteroidAsteroidCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.killAsteroidAsteroid();
+		gw.pS_Shoots_NPS();
 	}
 }

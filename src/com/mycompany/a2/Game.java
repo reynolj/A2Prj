@@ -192,25 +192,25 @@ public class Game extends Form {
 		ReloadCommand myReload = new ReloadCommand(gw);
 		addKeyListener('n', myReload);
 		
-		KillAsteroidMissileCommand myKAM = new KillAsteroidMissileCommand(gw);
+		PS_Shoots_Asteroid_Command myKAM = new PS_Shoots_Asteroid_Command(gw);
 		addKeyListener('k', myKAM);
 		
-		KillMissileNPS myKMN = new KillMissileNPS(gw);
+		PS_Shoots_NPS_Command myKMN = new PS_Shoots_NPS_Command(gw);
 		addKeyListener('e', myKMN);
 		
-		Kill_NPS_Missile_PSCommand myKNMP = new Kill_NPS_Missile_PSCommand(gw);
+		NPS_Shoots_PS_Command myKNMP = new NPS_Shoots_PS_Command(gw);
 		addKeyListener('E', myKNMP);
 		
-		KillAsteroidPSCommand myKAP = new KillAsteroidPSCommand(gw);
+		Collision_Asteroid_PS_Command myKAP = new Collision_Asteroid_PS_Command(gw);
 		addKeyListener('c', myKAP);
 		
-		Kill_NPS_PSCommand myKNP = new Kill_NPS_PSCommand(gw);
+		Collision_NPS_PS_Command myKNP = new Collision_NPS_PS_Command(gw);
 		addKeyListener('h', myKNP);
 		
-		KillAsteroidAsteroidCommand myKAA = new KillAsteroidAsteroidCommand(gw);
+		Collision_Asteroid_Asteroid_Command myKAA = new Collision_Asteroid_Asteroid_Command(gw);
 		addKeyListener('x', myKAA);
 		
-		KillAsteroidNPSCommand myKAN = new KillAsteroidNPSCommand(gw);
+		Collision_Asteroid_NPS_Command myKAN = new Collision_Asteroid_NPS_Command(gw);
 		addKeyListener('I', myKAN);
 		
 		TickCommand myTick = new TickCommand(gw);
