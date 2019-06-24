@@ -1,9 +1,17 @@
 TODO LIST:
 
-- [ ] Iterator Design Pattern
-- [ ] Command Design Pattern
-- [ ] Observer/Observable Design Pattern
-- [ ] Proxy
-- [ ] GameWorldPRoxy
-- [ ] MapView
-- [ ] PointsView
+LEGEND:
+[ ] is incomplete
+[/] is partially complete
+[?] is unverified complete
+[x] is complete
+
+- [?] Iterator Design Pattern
+- [x] Command Design Pattern
+- [x] Observer/Observable Design Pattern
+- [/] Proxy
+- [/] GameWorldProxy
+- [?] PointsView
+- [/] MapView
+- [ ] Animation
+- [ ] Sound
