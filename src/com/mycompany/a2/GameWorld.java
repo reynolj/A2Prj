@@ -90,6 +90,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	public String getTime() {
 		return String.valueOf(clock);
 	}
+	//*****************************End of Getter Methods******************************//
 	
 	//****************************No Update Needed Methods****************************//
 	
@@ -177,6 +178,7 @@ public class GameWorld extends Observable implements IGameWorld{
 			  "Remaining lives: " + playerLives );
 		System.out.println(); //for readability
 	}
+	//***************************End of No Update Needed Methods*******************//
 	
 	//****************************Update Needed Methods****************************//
 	
@@ -203,6 +205,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		updateViews();
 	}
 	
+	//************************* Add Game Object Commands *******************************//
 	/**
 	 * Command 'a'
 	 * Creates a new Asteroid object in the GameWorld. Adds it to the GameObject vector
@@ -329,6 +332,10 @@ public class GameWorld extends Observable implements IGameWorld{
 		updateViews();
 	}
 	
+	//************************End of Add Game Object Methods ********************************//
+
+	//************************Game Object Death Methods***************************************//
+	
 	/**	
 	 *  Helper Function for Commands: 'e', 'c', 'h'
 	 * Removes a life from the player ship. Ends the game if no lives are left.
@@ -352,73 +359,54 @@ public class GameWorld extends Observable implements IGameWorld{
 			}
 		}
 	}
-
 	/**
-	 * Command '<'
-	 * Turns the player's missile launcher to the left only if a PlayerShip exists in the GameObject vector
-	 * Displays an error if a PlayerShip does not exist. 
-	 */
-	public void turnPSMissileLauncherLeft() {
-		System.out.println("- TURN MISSILE LAUNCHER LEFT");
-		
-		if (PlayerShip.isMissing() != true) {
-			PlayerShip.getInstance().turnLauncherLeft();
-			System.out.println("Player Missile Launcher turned Left. New direction: " 
-			                    + PlayerShip.getInstance().getLauncherDirection());
-		} else {
-			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
-		}
-		System.out.println(); //for readability
-		updateViews();
-	}
-	
-	/**
-	 * Command '>'
-	 * Turns the player's missile launcher to the right only if a PlayerShip exists in the GameObject vector
-	 * Displays an error if a PlayerShip does not exist. 
-	 */
-	public void turnPSMissileLauncherRight() {
-		System.out.println("- TURN MISSILE LAUNCHER RIGHT");
-		
-		if (PlayerShip.isMissing() != true) {
-			PlayerShip.getInstance().turnLauncherRight();
-			System.out.println("Player Missile Launcher turned right. New direction: " 
-			                    + PlayerShip.getInstance().getLauncherDirection());
-		} else {
-			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
-		}
-		System.out.println(); //for readability
-		updateViews();
-	}
-	
-	/**
-	 * Command 'n'
-	 * Reloads a PlayerShip with it's maximum amount of missiles.
-	 * Prints an error if a PlayerShip does not exist in the GameObject vector
+	 * Command 'e'
+	 * Kills a NonPlayerShip with a Player Missile only if a NonPlayerShip and a Player Missile exists
+	 * in the GameObject vector.
+	 * Increases the Player Score.
 	 * Note: Proximity preconditions not yet implemented
 	 */
-	public void reloadMissiles() {
-		boolean spaceStationExist = false;
-		System.out.println("- RELOAD MISSILES");
+	public void PS_Shoots_NPS() {
+		NonPlayerShip NPS = null;
+		Missile missile = null;
+		
+		System.out.println("- PS KILLED NPS");
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
-			if (o instanceof SpaceStation) {
-				spaceStationExist = true;
+			if (o instanceof NonPlayerShip) {
+				NPS = (NonPlayerShip) o;
 				break;
 			}
 		}
 		
-		if (!spaceStationExist) {
-			System.out.println("ERROR: No space station in Game World");
+		if (NPS == null) {
+			System.out.println("ERROR: No enemy ship in Game World.");
 		}
-		if (PlayerShip.isMissing()) {
-			System.out.println("ERROR: No player ship in Game World");
+		
+		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
+			GameObject o = (GameObject) i.next();
+			
+			if (o instanceof Missile) {
+				if ( ((Missile) o).getOwner() instanceof PlayerShip ) {
+					missile = (Missile) o;
+					break;
+				}
+			}
 		}
-		if (PlayerShip.isMissing() != true && spaceStationExist) {
-			PlayerShip.getInstance().reloadMissiles();
-			System.out.println("The player ship's missile supply has been restored to maximum.\n" + PlayerShip.getInstance() );
+		
+		if (missile == null) {
+			System.out.println("ERROR: No missile belonging to player ship in Game World.");
+		}
+		
+		if (missile == null || NPS == null) {
+			//Do nothing
+		} else {
+			playerScore += SCORE_NPS;
+			store.remove(NPS);
+			store.remove(missile);
+			System.out.println("A player ship's missile has killed an enemy ship.\nPlayer Score: " + playerScore);
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -476,59 +464,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		System.out.println(); //for readability
 		updateViews();
 		
-	}
-	
-	/**
-	 * Command 'e'
-	 * Kills a NonPlayerShip with a Player Missile only if a NonPlayerShip and a Player Missile exists
-	 * in the GameObject vector.
-	 * Increases the Player Score.
-	 * Note: Proximity preconditions not yet implemented
-	 */
-	public void pS_Shoots_NPS() {
-		NonPlayerShip NPS = null;
-		Missile missile = null;
-		
-		System.out.println("- PS KILLED NPS");
-		
-		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
-			GameObject o = (GameObject) i.next();
-			
-			if (o instanceof NonPlayerShip) {
-				NPS = (NonPlayerShip) o;
-				break;
-			}
-		}
-		
-		if (NPS == null) {
-			System.out.println("ERROR: No enemy ship in Game World.");
-		}
-		
-		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
-			GameObject o = (GameObject) i.next();
-			
-			if (o instanceof Missile) {
-				if ( ((Missile) o).getOwner() instanceof PlayerShip ) {
-					missile = (Missile) o;
-					break;
-				}
-			}
-		}
-		
-		if (missile == null) {
-			System.out.println("ERROR: No missile belonging to player ship in Game World.");
-		}
-		
-		if (missile == null || NPS == null) {
-			//Do nothing
-		} else {
-			playerScore += SCORE_NPS;
-			store.remove(NPS);
-			store.remove(missile);
-			System.out.println("A player ship's missile has killed an enemy ship.\nPlayer Score: " + playerScore);
-		}
-		System.out.println(); //for readability
-		updateViews();
 	}
 	
 	/**
@@ -614,49 +549,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		} else {
 			store.remove(asteroid);
 			System.out.println("An asteroid has collided with the player ship, killing each other");
-			killPS();
-		}
-		System.out.println(); //for readability
-		updateViews();
-	}
-	
-	/**
-	 * Command 'h'
-	 * Kills a NonPlayerShip and PlayerShip due to them striking each other. Checks first to insure they
-	 * both exist in the GameObject vector. Removes the NonPlayerShip from the game board.
-	 * Resets PlayerShip's location and removes a life.
-	 * Note: Proximity preconditions not yet implemented
-	 */
-	public void collision_NPS_PS() {
-		PlayerShip PS = null;
-		NonPlayerShip NPS = null;
-		
-		System.out.println("- PS CRASHED INTO NPS");
-		
-		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
-			GameObject o = (GameObject) i.next();
-			
-			if (o instanceof NonPlayerShip) {
-				NPS = (NonPlayerShip) o;
-				break;
-			}
-		}	
-		
-		if (NPS == null) {
-			System.out.println("ERROR: No enemy ship in Game World.");
-		}
-		
-		if (PlayerShip.isMissing() != true) {
-			PS = PlayerShip.getInstance();
-		} else {
-			System.out.println("ERROR: No player ship in Game World.");
-		}
-		
-		if (NPS == null || PS == null) {
-			//Do nothing
-		} else {
-			store.remove(NPS);
-			System.out.println("An enemy ship has collided with the player ship, killing each other.");
 			killPS();
 		}
 		System.out.println(); //for readability
@@ -757,6 +649,53 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	/**
+	 * Command 'h'
+	 * Kills a NonPlayerShip and PlayerShip due to them striking each other. Checks first to insure they
+	 * both exist in the GameObject vector. Removes the NonPlayerShip from the game board.
+	 * Resets PlayerShip's location and removes a life.
+	 * Note: Proximity preconditions not yet implemented
+	 */
+	public void collision_NPS_PS() {
+		PlayerShip PS = null;
+		NonPlayerShip NPS = null;
+		
+		System.out.println("- PS CRASHED INTO NPS");
+		
+		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
+			GameObject o = (GameObject) i.next();
+			
+			if (o instanceof NonPlayerShip) {
+				NPS = (NonPlayerShip) o;
+				break;
+			}
+		}	
+		
+		if (NPS == null) {
+			System.out.println("ERROR: No enemy ship in Game World.");
+		}
+		
+		if (PlayerShip.isMissing() != true) {
+			PS = PlayerShip.getInstance();
+		} else {
+			System.out.println("ERROR: No player ship in Game World.");
+		}
+		
+		if (NPS == null || PS == null) {
+			//Do nothing
+		} else {
+			store.remove(NPS);
+			System.out.println("An enemy ship has collided with the player ship, killing each other.");
+			killPS();
+		}
+		System.out.println(); //for readability
+		updateViews();
+	}
+	
+	//************************End of Game Object Death Methods*********************************//
+	
+	//************************Player Ship Related Methods**************************************//
+	
+	/**
 	 * Command 'i'
 	 * If PlayerShip exists and speed increase will not exceed maximum, its speed will increase
 	 */
@@ -852,6 +791,79 @@ public class GameWorld extends Observable implements IGameWorld{
 	}
 	
 	/**
+	 * Command '<'
+	 * Turns the player's missile launcher to the left only if a PlayerShip exists in the GameObject vector
+	 * Displays an error if a PlayerShip does not exist. 
+	 */
+	public void turnPSMissileLauncherLeft() {
+		System.out.println("- TURN MISSILE LAUNCHER LEFT");
+		
+		if (PlayerShip.isMissing() != true) {
+			PlayerShip.getInstance().turnLauncherLeft();
+			System.out.println("Player Missile Launcher turned Left. New direction: " 
+			                    + PlayerShip.getInstance().getLauncherDirection());
+		} else {
+			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
+		}
+		System.out.println(); //for readability
+		updateViews();
+	}
+	
+	/**
+	 * Command '>'
+	 * Turns the player's missile launcher to the right only if a PlayerShip exists in the GameObject vector
+	 * Displays an error if a PlayerShip does not exist. 
+	 */
+	public void turnPSMissileLauncherRight() {
+		System.out.println("- TURN MISSILE LAUNCHER RIGHT");
+		
+		if (PlayerShip.isMissing() != true) {
+			PlayerShip.getInstance().turnLauncherRight();
+			System.out.println("Player Missile Launcher turned right. New direction: " 
+			                    + PlayerShip.getInstance().getLauncherDirection());
+		} else {
+			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
+		}
+		System.out.println(); //for readability
+		updateViews();
+	}
+	
+	/**
+	 * Command 'n'
+	 * Reloads a PlayerShip with it's maximum amount of missiles.
+	 * Prints an error if a PlayerShip does not exist in the GameObject vector
+	 * Note: Proximity preconditions not yet implemented
+	 */
+	public void reloadMissiles() {
+		boolean spaceStationExist = false;
+		System.out.println("- RELOAD MISSILES");
+		
+		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
+			GameObject o = (GameObject) i.next();
+			
+			if (o instanceof SpaceStation) {
+				spaceStationExist = true;
+				break;
+			}
+		}
+		
+		if (!spaceStationExist) {
+			System.out.println("ERROR: No space station in Game World");
+		}
+		if (PlayerShip.isMissing()) {
+			System.out.println("ERROR: No player ship in Game World");
+		}
+		if (PlayerShip.isMissing() != true && spaceStationExist) {
+			PlayerShip.getInstance().reloadMissiles();
+			System.out.println("The player ship's missile supply has been restored to maximum.\n" + PlayerShip.getInstance() );
+		}
+		System.out.println(); //for readability
+		updateViews();
+	}
+	
+	//************************End of Player Ship Related Methods**************************************//
+	
+	/**
 	 * Command 't'
 	 * Ticks the game forward one turn.
 	 * Moves all objects.
@@ -900,4 +912,5 @@ public class GameWorld extends Observable implements IGameWorld{
 		System.out.println(); //for readability
 		updateViews();
 	}
+	//****************************End of Update Needed Methods****************************//
 }

@@ -21,6 +21,6 @@ private GameWorld gw;
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.pS_Shoots_NPS();
+		gw.PS_Shoots_NPS();
 	}
 }
