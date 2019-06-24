@@ -1,7 +1,6 @@
 package com.mycompany.a2;
 
 import java.util.Observable;
-//import java.util.Vector;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 
@@ -15,7 +14,6 @@ public class GameWorld extends Observable implements IGameWorld{
 	
 	private static GameWorld gw = null;
 	
-	//private Vector<GameObject> store = new Vector<GameObject>();
 	private GameObjectCollection store = new GameObjectCollection();
 	private int playerScore, playerLives, clock;
 	private boolean soundOn = true;
@@ -145,14 +143,6 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public void map() {
 		String toPrint = "- MAP\n";
-		
-		/*if (store.isEmpty()) {
-			toPrint += "Game World is devoid of Game objects and happiness. The player wept.\n";
-		} else {
-			for (GameObject i : store) {
-				toPrint += i.toString() +"\n";
-			}
-		}*/
 		
 		if ( store.isEmpty() ) {
 			toPrint += "Game World is devoid of Game objects and happiness. The player wept.\n";
@@ -311,15 +301,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		
 		System.out.println("- LAUNCH NPS MISSILE");
 		
-		/*for (GameObject i : store) {			
-			if (i instanceof NonPlayerShip) {
-				NPS = (NonPlayerShip) i;
-				if ( ((NonPlayerShip) i).getMissiles() > 0 ) {
-					break;
-				}
-			}
-		}*/
-		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
@@ -360,14 +341,6 @@ public class GameWorld extends Observable implements IGameWorld{
 			points();
 			System.out.println("Game Over!");
 		}
-		
-		/*for (GameObject i : store) {
-			if (i instanceof PlayerShip) {
-				store.remove(o);
-				PlayerShip.deleteShip();
-				break;
-			}
-		}*/
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
@@ -428,13 +401,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		boolean spaceStationExist = false;
 		System.out.println("- RELOAD MISSILES");
 		
-		/*for (GameObject i : store) {
-			if (i instanceof SpaceStation) {
-				spaceStationExist = true;
-				break;
-			}
-		}*/
-		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
@@ -471,13 +437,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		
 		System.out.println("- PLAYER KILLS ASTEROID");
 		
-		/*for (GameObject i : store) {
-			if (i instanceof Asteroid) {
-				asteroid = (Asteroid) i;
-				break;
-			}
-		}*/
-		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
@@ -490,15 +449,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		if (asteroid == null) {
 			System.out.println("ERROR: No asteroid in Game World.");
 		}
-		
-		/*for (GameObject i : store) {
-			if (i instanceof Missile) {
-				missile = (Missile) i;
-				if ( missile.getOwner() instanceof PlayerShip ) {
-					break;
-				}
-			}
-		}*/
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
@@ -541,13 +491,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		
 		System.out.println("- PS KILLED NPS");
 		
-		/*for (GameObject i : store) {
-			if (i instanceof NonPlayerShip) {
-				NPS = (NonPlayerShip)i;
-				break;
-			}
-		}*/
-		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
@@ -560,15 +503,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		if (NPS == null) {
 			System.out.println("ERROR: No enemy ship in Game World.");
 		}
-		
-		/*for (GameObject i : store) {
-			if (i instanceof Missile) {
-				if ( ((Missile) i).getOwner() instanceof PlayerShip ) {
-					missile = (Missile) i;
-					break;
-				}
-			}
-		}*/
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
@@ -616,15 +550,6 @@ public class GameWorld extends Observable implements IGameWorld{
 			System.out.println("ERROR: No player ship in Game World.");
 		}
 		
-		/*for (GameObject i : store) {
-			if (i instanceof Missile) {
-				if ( ((Missile) i).getOwner() instanceof NonPlayerShip ) {
-					NPSmissile = (Missile) i;
-					break;
-				}
-			}
-		}*/
-		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
@@ -664,13 +589,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		PlayerShip PS = null;
 		
 		System.out.println("- PS CRASHED INTO ASTEROID");
-		
-		/*for (GameObject i : store) {
-			if (i instanceof Asteroid) {
-				asteroid = (Asteroid) i;
-				break;
-			}
-		}*/
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
@@ -715,13 +633,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		
 		System.out.println("- PS CRASHED INTO NPS");
 		
-		/*for (GameObject i : store){
-			if (i instanceof NonPlayerShip) {
-				NPS = (NonPlayerShip) i;
-				break;
-			}
-		}*/
-		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
@@ -763,18 +674,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		Asteroid asteroid2 = null;
 		
 		System.out.println("- TWO ASTEROIDS COLLIDED");
-		
-		/*for (GameObject i : store) {
-			if (i instanceof Asteroid) {
-				if ( asteroid1 == null) {
-					asteroid1 = (Asteroid) i;
-				}
-				else if (asteroid2 == null) {
-					asteroid2 = (Asteroid) i;
-					break;
-				}
-			}
-		}*/
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
@@ -820,13 +719,6 @@ public class GameWorld extends Observable implements IGameWorld{
 
 		System.out.println("- ASTEROID COLLIDED WITH NPS");
 		
-		/*for (GameObject i : store){
-			if (i instanceof Asteroid) {
-				asteroid = (Asteroid) i;
-				break;
-			}
-		}*/
-		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
 			
@@ -839,13 +731,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		if (asteroid == null) {
 			System.out.println("ERROR: No asteroid in Game World.");
 		}
-		
-		/*for (GameObject i : store){
-			if (i instanceof NonPlayerShip) {
-				NPS = (NonPlayerShip) i;
-				break;
-			}
-		}*/
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 			GameObject o = (GameObject) i.next();
@@ -981,26 +866,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		// We can't remove GameObjects inside of the foreach loop because it throws exceptions.
 		GameObjectCollection removeItems = new GameObjectCollection();
 		// Move all the MoveableObjects
-		
-		/*
-		for (GameObject i : store) {
-			if (i instanceof IMoveable) {
-				((IMoveable) i).move();
-				
-				// If the MoveableObject is a Missile and it has run out of fuel,
-				// add it to the removeItems Vector for disposal outside of the loop.
-				if (i instanceof Missile && ((Missile) i).getFuel() <= 0) {
-					removeItems.add(i);
-				}
-			}
-			// Blink the SpaceStation if the proper amount of time has elapsed
-			else if (i instanceof SpaceStation) {
-				int blinkRate = ((SpaceStation) i).getBlinkRate();
-				if (blinkRate != 0 && clock % blinkRate == 0) {
-					((SpaceStation) i).toggleLight();
-				}
-			}
-		}*/
+
 		
 		if ( !store.isEmpty() ) {
 			for ( IIterator i = store.getIterator(); i.hasNext(); ) {
@@ -1022,10 +888,12 @@ public class GameWorld extends Observable implements IGameWorld{
 					}
 				}
 			}
-		// Remove all the GameObjects that needed to be removed all at once.
-			store.removeAll(removeItems);
-		// Empty out our temporary GameObject Vector.
-		//removeItems.clear();
+			// Remove all the GameObjects that needed to be removed
+			for ( IIterator i = removeItems.getIterator(); i.hasNext(); ) {
+				GameObject o = (GameObject) i.next();
+				
+				store.remove(o);
+			}
 		}
 		
 		System.out.println("Game clock: " + clock);

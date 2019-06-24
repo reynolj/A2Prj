@@ -1,6 +1,7 @@
 package com.mycompany.a2;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class GameObjectCollection implements ICollection {
@@ -27,10 +28,6 @@ public class GameObjectCollection implements ICollection {
 	
 	public boolean isEmpty() {
 		return theCollection.isEmpty();
-	}
-	
-	public void removeAll(GameObjectCollection removeItems) {
-		theCollection.removeAll((Collection<?>) removeItems);
 	}
 	
 	//------------------------------------------------------------------//
