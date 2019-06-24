@@ -4,15 +4,15 @@ import com.codename1.ui.Command;
 import com.codename1.ui.events.ActionEvent;
 import com.mycompany.a2.GameWorld;
 
-public class KillAsteroidMissileCommand extends Command {
-	private GameWorld gw;
+public class Collision_Asteroid_PS_Command extends Command {
+private GameWorld gw;
 	
 	/**
 	 * Constructor
 	 * @param gw GameWorld object
 	 */
-	public KillAsteroidMissileCommand(GameWorld gw) {
-		super("Kill Asteroid with Missile");
+	public Collision_Asteroid_PS_Command(GameWorld gw) {
+		super("Kill PS with Asteroid");
 		this.gw = gw;
 	}
 	
@@ -21,6 +21,6 @@ public class KillAsteroidMissileCommand extends Command {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		gw.killAsteroidMissile();
+		gw.collision_Asteroid_PS();
 	}
 }
