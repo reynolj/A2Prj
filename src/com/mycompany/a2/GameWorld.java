@@ -1002,29 +1002,31 @@ public class GameWorld extends Observable implements IGameWorld{
 			}
 		}*/
 		
-		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
-			GameObject o = (GameObject) i.next();
-			if (o instanceof IMoveable) {
-				((IMoveable) o).move();
-				
-				// If the MoveableObject is a Missile and it has run out of fuel,
-				// add it to the removeItems Vector for disposal outside of the loop.
-				if (o instanceof Missile && ((Missile) o).getFuel() <= 0) {
-					removeItems.add(o);
+		if ( !store.isEmpty() ) {
+			for ( IIterator i = store.getIterator(); i.hasNext(); ) {
+				GameObject o = (GameObject) i.next();
+				if (o instanceof IMoveable) {
+					((IMoveable) o).move();
+					
+					// If the MoveableObject is a Missile and it has run out of fuel,
+					// add it to the removeItems Vector for disposal outside of the loop.
+					if (o instanceof Missile && ((Missile) o).getFuel() <= 0) {
+						removeItems.add(o);
+					}
+				}
+				// Blink the SpaceStation if the proper amount of time has elapsed
+				else if (o instanceof SpaceStation) {
+					int blinkRate = ((SpaceStation) o).getBlinkRate();
+					if (blinkRate != 0 && clock % blinkRate == 0) {
+						((SpaceStation) o).toggleLight();
+					}
 				}
 			}
-			// Blink the SpaceStation if the proper amount of time has elapsed
-			else if (o instanceof SpaceStation) {
-				int blinkRate = ((SpaceStation) o).getBlinkRate();
-				if (blinkRate != 0 && clock % blinkRate == 0) {
-					((SpaceStation) o).toggleLight();
-				}
-			}
-		}
 		// Remove all the GameObjects that needed to be removed all at once.
-		store.removeAll(removeItems);
+			store.removeAll(removeItems);
 		// Empty out our temporary GameObject Vector.
 		//removeItems.clear();
+		}
 		
 		System.out.println("Game clock: " + clock);
 		System.out.println(); //for readability
