@@ -9,7 +9,6 @@ import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
 import com.mycompany.a2.commands.*;
 
@@ -25,150 +24,119 @@ public class Game extends Form {
 		mv = new MapView();
 		gw.addObserver(pv);
 		gw.addObserver(mv);
-		
-		//Form definition
+
 		this.setLayout(new BorderLayout());
 		
-		//Create a Toolbar
+		//*************************Toolbar***********************************************//
+		
 		Toolbar myToolbar = new Toolbar();
 		setToolbar(myToolbar);
-		
-		// Create a Toolbar Title
 		Label myTitleLabel = new Label("CSc133 A2Prj");
 		myToolbar.setTitleComponent(myTitleLabel);
 		
-		//Side menu
-		Label menuHeaderLabel = new Label("File");
-		//menuHeaderLabel.setTextPosition(Component.CENTER);
-		menuHeaderLabel.getAllStyles().setFgColor(ColorUtil.WHITE);
-		myToolbar.addComponentToSideMenu(menuHeaderLabel);
+		//*************************End of Toolbar***************************************//
 		
-		// Sidemenu Sound Command Checkbox
+		//**************************Side menu*******************************************//
+		
+		Label menuHeaderLabel = new Label("File");
+		myToolbar.addComponentToSideMenu(menuHeaderLabel);
+		menuHeaderLabel.getAllStyles().setFgColor(ColorUtil.WHITE);
+
+		// Add commands to Sidemenu, appear in order on gui as written below
+		
+		// New command
+		NewCommand myNew = new NewCommand(gw);
+		myToolbar.addCommandToSideMenu(myNew);
+		
+		// Save Command
+		SaveCommand mySave = new SaveCommand(gw);
+		myToolbar.addCommandToSideMenu(mySave);
+		
+		// Undo Command
+		UndoCommand myUndo = new UndoCommand(gw);
+		myToolbar.addCommandToSideMenu(myUndo);
+		
+		//Sound on Command
 		SoundCommand setSound = new SoundCommand(gw);
 		CheckBox checkSoundOn = new CheckBox("Sound On");
-		checkSoundOn.getAllStyles().setBgTransparency(255);
-		checkSoundOn.getAllStyles().setBgColor(ColorUtil.LTGRAY);
-		checkSoundOn.getAllStyles().setFgColor(ColorUtil.WHITE);
-		//set "SideComponent" property of the command object to the check box
 		setSound.putClientProperty("Sound On", checkSoundOn);
 		checkSoundOn.setSelected(true);
 		checkSoundOn.setCommand(setSound);
 		
-		AboutCommand myAbout	 = new AboutCommand(gw);
-		NewCommand myNew	 	 = new NewCommand(gw);
-		SaveCommand mySave	 	 = new SaveCommand(gw);
-		UndoCommand myUndo  	 = new UndoCommand(gw);
-		QuitCommand sideMenuQuit = new QuitCommand(gw);
+		//Sound Checkbox Aesthetics
+		checkSoundOn.getAllStyles().setBgTransparency(255);
+		checkSoundOn.getAllStyles().setBgColor(ColorUtil.LTGRAY);
+		checkSoundOn.getAllStyles().setFgColor(ColorUtil.WHITE);
+		myToolbar.addComponentToSideMenu(checkSoundOn);		
 		
-		// Add commands to Sidemenu
-		myToolbar.addCommandToSideMenu(myNew);
-		myToolbar.addCommandToSideMenu(mySave);
-		myToolbar.addCommandToSideMenu(myUndo);
-		myToolbar.addComponentToSideMenu(checkSoundOn);		// Sound checkbox
+		//About Command
+		AboutCommand myAbout = new AboutCommand(gw);
 		myToolbar.addCommandToSideMenu(myAbout);
-		myToolbar.addCommandToSideMenu(sideMenuQuit);		// Quit command
 		
+		//Quit Command
+		QuitCommand sideMenuQuit = new QuitCommand(gw);
+		myToolbar.addCommandToSideMenu(sideMenuQuit);		
+		QuitCommand myQuit = new QuitCommand(gw);
+		addKeyListener('Q', myQuit);
 		
-		//Create some buttons to put in the West Side
-		Button addAsteroid		= 		new Button("Add Asteroid");
-		Button addNPS			= 		new Button("Add Enemy Ship");
-		Button addSpaceStation	=	 	new Button("Add Space Station");
-		Button addPlayerShip	=		new Button("Add Player Ship");
-		Button fireMissile		=		new Button("Fire Player Missile");
-		Button jump				=		new Button("Jump To Hyperspace");
-		//Add aesthetics below
-		addAsteroid.getAllStyles().setBgColor(ColorUtil.BLUE);
-		addAsteroid.getAllStyles().setBgTransparency(128);
-		addAsteroid.getAllStyles().setFgColor(ColorUtil.WHITE);
-		addAsteroid.getAllStyles().setBorder(Border.createBevelRaised());
-		addAsteroid.getAllStyles().setBorder(Border.createBevelLowered());
+		//*********************************End of Side Menu*************************************//
 		
-		addNPS.getAllStyles().setBgColor(ColorUtil.BLUE);
-		addNPS.getAllStyles().setBgTransparency(128);
-		addNPS.getAllStyles().setFgColor(ColorUtil.WHITE);
-		addNPS.getAllStyles().setBorder(Border.createBevelRaised());
-		addNPS.getAllStyles().setBorder(Border.createBevelLowered());
+		//*********************************West Container (buttons)*****************************//
 		
-		addSpaceStation.getAllStyles().setBgColor(ColorUtil.BLUE);
-		addSpaceStation.getAllStyles().setBgTransparency(128);
-		addSpaceStation.getAllStyles().setFgColor(ColorUtil.WHITE);
-		addSpaceStation.getAllStyles().setBorder(Border.createBevelRaised());
-		addSpaceStation.getAllStyles().setBorder(Border.createBevelLowered());
-		
-		addPlayerShip.getAllStyles().setBgColor(ColorUtil.BLUE);
-		addPlayerShip.getAllStyles().setBgTransparency(128);
-		addPlayerShip.getAllStyles().setFgColor(ColorUtil.WHITE);
-		addPlayerShip.getAllStyles().setBorder(Border.createBevelRaised());
-		addPlayerShip.getAllStyles().setBorder(Border.createBevelLowered());
-		
-		fireMissile.getAllStyles().setBgColor(ColorUtil.BLUE);
-		fireMissile.getAllStyles().setBgTransparency(128);
-		fireMissile.getAllStyles().setFgColor(ColorUtil.WHITE);
-		fireMissile.getAllStyles().setBorder(Border.createBevelRaised());
-		fireMissile.getAllStyles().setBorder(Border.createBevelLowered());
-		
-		jump.getAllStyles().setBgColor(ColorUtil.BLUE);
-		jump.getAllStyles().setBgTransparency(128);
-		jump.getAllStyles().setFgColor(ColorUtil.WHITE);
-		jump.getAllStyles().setBorder(Border.createBevelRaised());
-		jump.getAllStyles().setBorder(Border.createBevelLowered());
-		
-		/////////////////////////
-		// BorderLayout
-		// North: PlayerView
-		// West: Controls (command buttons)
-		// Center: MapView
-		// East and South are unused.
-		
-		//North
-		//
-		//Container exists inside PointView
-		
-		//West
 		Container westContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
 		westContainer.getAllStyles().setBorder(Border.createLineBorder(1,ColorUtil.BLACK));
 		Label commandLabel = new Label("Commands");
 		commandLabel.getAllStyles().setAlignment(CENTER);
 		westContainer.add(commandLabel);
-		
-		westContainer.add(addAsteroid);
-		westContainer.add(addNPS);
-		westContainer.add(addSpaceStation);
-		westContainer.add(addPlayerShip);
-		westContainer.add(fireMissile);
-		westContainer.add(jump);
-		
-		//Center
-		//
-		//Container exists inside MapView
-		
-		this.add(BorderLayout.NORTH,pv);
-		this.add(BorderLayout.WEST,westContainer);
-		this.add(BorderLayout.CENTER,mv);
-		
-		this.show();
-		
-		//ALL COMMANDS
-		//Control Panel Buttons
+
+		// Add buttons with commands to West Container, appear in order on gui as written below
+		// Add asteroid
+		Button addAsteroid = new Button("Add Asteroid");
+		setButton(addAsteroid);
 		AddAsteroidCommand myaddAsteroid = new AddAsteroidCommand(gw);
 		addAsteroid.setCommand( myaddAsteroid );
+		westContainer.add(addAsteroid);
 		
+		// Add NPS
+		Button addNPS = new Button("Add Enemy Ship");
+		setButton(addNPS);
 		AddNPSCommand myaddNPS = new AddNPSCommand(gw);
 		addNPS.setCommand(myaddNPS);
+		westContainer.add(addNPS);
 		
+		// Add Space Station
+		Button addSpaceStation = new Button("Add Space Station");
+		setButton(addSpaceStation);
 		AddSpaceStationCommand myaddST = new AddSpaceStationCommand(gw);
 		addSpaceStation.setCommand(myaddST);
-		
+		westContainer.add(addSpaceStation);
+
+		//Add Player Ship
+		Button addPlayerShip = new Button("Add Player Ship");
+		setButton(addPlayerShip);
 		AddPlayerShipCommand myaddPS = new AddPlayerShipCommand(gw);
 		addPlayerShip.setCommand(myaddPS);
+		westContainer.add(addPlayerShip);
 		
+		// Fire Missile
+		Button fireMissile = new Button("Fire Player Missile");
+		setButton(fireMissile);
 		FirePSMissileCommand myFireMissile = new FirePSMissileCommand(gw);
 		fireMissile.setCommand(myFireMissile);
 		addKeyListener(-90, myFireMissile); //spacebar
+		westContainer.add(fireMissile);
 		
+		// Hyperspace Jump
+		Button jump	= new Button("Jump To Hyperspace");
+		setButton(jump);
 		JumpToHyperspaceCommand myJump = new JumpToHyperspaceCommand(gw);
 		jump.setCommand(myJump);
 		addKeyListener('j', myJump);
+		westContainer.add(jump);
+		
+		//****************************End of West Container*********************************//
+		
+		//****************************Commands with only KeyListeners***********************//
 		
 		//Key bindings
 		IncreasePSSpeedCommand myIncrease = new IncreasePSSpeedCommand(gw);
@@ -223,9 +191,20 @@ public class Game extends Form {
 		TickCommand myTick = new TickCommand(gw);
 		addKeyListener('t', myTick);
 		
-		QuitCommand myQuit = new QuitCommand(gw);
-		addKeyListener('Q', myQuit);
+		//****************************End of Commands with only KeyListeners******************//
 		
+		this.add(BorderLayout.NORTH,pv);
+		this.add(BorderLayout.CENTER,mv);
+		this.add(BorderLayout.WEST,westContainer);
+		
+		this.show();
 	}
-
+	
+	private void setButton(Button button) {
+		button.getAllStyles().setBgColor(ColorUtil.BLUE);
+		button.getAllStyles().setBgTransparency(128);
+		button.getAllStyles().setFgColor(ColorUtil.WHITE);
+		button.getAllStyles().setBorder(Border.createBevelRaised());
+		button.getAllStyles().setBorder(Border.createBevelLowered());
+	}
 }
