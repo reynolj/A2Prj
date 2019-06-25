@@ -3,17 +3,13 @@ package com.mycompany.a2;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
-import com.codename1.ui.Command;
-import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
-import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
 import com.mycompany.a2.commands.*;
 
@@ -85,31 +81,37 @@ public class Game extends Form {
 		addAsteroid.getAllStyles().setBgTransparency(128);
 		addAsteroid.getAllStyles().setFgColor(ColorUtil.WHITE);
 		addAsteroid.getAllStyles().setBorder(Border.createBevelRaised());
+		addAsteroid.getAllStyles().setBorder(Border.createBevelLowered());
 		
 		addNPS.getAllStyles().setBgColor(ColorUtil.BLUE);
 		addNPS.getAllStyles().setBgTransparency(128);
 		addNPS.getAllStyles().setFgColor(ColorUtil.WHITE);
 		addNPS.getAllStyles().setBorder(Border.createBevelRaised());
+		addNPS.getAllStyles().setBorder(Border.createBevelLowered());
 		
 		addSpaceStation.getAllStyles().setBgColor(ColorUtil.BLUE);
 		addSpaceStation.getAllStyles().setBgTransparency(128);
 		addSpaceStation.getAllStyles().setFgColor(ColorUtil.WHITE);
 		addSpaceStation.getAllStyles().setBorder(Border.createBevelRaised());
+		addSpaceStation.getAllStyles().setBorder(Border.createBevelLowered());
 		
 		addPlayerShip.getAllStyles().setBgColor(ColorUtil.BLUE);
 		addPlayerShip.getAllStyles().setBgTransparency(128);
 		addPlayerShip.getAllStyles().setFgColor(ColorUtil.WHITE);
 		addPlayerShip.getAllStyles().setBorder(Border.createBevelRaised());
+		addPlayerShip.getAllStyles().setBorder(Border.createBevelLowered());
 		
 		fireMissile.getAllStyles().setBgColor(ColorUtil.BLUE);
 		fireMissile.getAllStyles().setBgTransparency(128);
 		fireMissile.getAllStyles().setFgColor(ColorUtil.WHITE);
 		fireMissile.getAllStyles().setBorder(Border.createBevelRaised());
+		fireMissile.getAllStyles().setBorder(Border.createBevelLowered());
 		
 		jump.getAllStyles().setBgColor(ColorUtil.BLUE);
 		jump.getAllStyles().setBgTransparency(128);
 		jump.getAllStyles().setFgColor(ColorUtil.WHITE);
 		jump.getAllStyles().setBorder(Border.createBevelRaised());
+		jump.getAllStyles().setBorder(Border.createBevelLowered());
 		
 		/////////////////////////
 		// BorderLayout
@@ -124,6 +126,11 @@ public class Game extends Form {
 		
 		//West
 		Container westContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+		westContainer.getAllStyles().setBorder(Border.createLineBorder(1,ColorUtil.BLACK));
+		Label commandLabel = new Label("Commands");
+		commandLabel.getAllStyles().setAlignment(CENTER);
+		westContainer.add(commandLabel);
+		
 		westContainer.add(addAsteroid);
 		westContainer.add(addNPS);
 		westContainer.add(addSpaceStation);

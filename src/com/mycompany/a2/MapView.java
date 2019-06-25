@@ -13,11 +13,11 @@ public class MapView extends Container implements Observer {
 	
 	public MapView() {
 		Container myView = new Container();
-		myView.getAllStyles().setPadding(Component.BOTTOM,384);
-		myView.getAllStyles().setPadding(Component.TOP,384);
-		myView.getAllStyles().setPadding(Component.LEFT,512);
-		myView.getAllStyles().setPadding(Component.RIGHT,512);
-		myView.getAllStyles().setBorder(Border.createLineBorder(1,ColorUtil.BLACK));
+		//myView.getAllStyles().setPadding(Component.BOTTOM,384);
+		//myView.getAllStyles().setPadding(Component.TOP,384);
+		//myView.getAllStyles().setPadding(Component.LEFT,512);
+		//myView.getAllStyles().setPadding(Component.RIGHT,512);
+		myView.getAllStyles().setBorder(Border.createLineBorder(3,ColorUtil.BLACK));
 	
 		this.add(myView);
 	}
@@ -26,7 +26,5 @@ public class MapView extends Container implements Observer {
 		IGameWorld gw = (IGameWorld) data;
 		gw.map();
 		this.repaint();
-		//System.out.println("In update - Pointsview");
-		
 	}
 }

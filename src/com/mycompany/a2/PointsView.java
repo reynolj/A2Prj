@@ -7,6 +7,8 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Container;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.plaf.Border;
 
 public class PointsView extends Container implements Observer {
 	private Label scoreLabel;
@@ -16,6 +18,7 @@ public class PointsView extends Container implements Observer {
 	private Label timeLabel;
 	
 	public PointsView() {
+		this.setLayout(new FlowLayout(CENTER));
 		Label scoreTextLabel = new Label("Points: ");
 		Label livesTextLabel = new Label("Lives: ");
 		Label missilesTextLabel = new Label("Missiles: ");
@@ -32,6 +35,8 @@ public class PointsView extends Container implements Observer {
 		
 		Container myContainer = new Container();
 		myContainer.setLayout(new BoxLayout(BoxLayout.X_AXIS));
+		this.getAllStyles().setBorder(Border.createLineBorder(1,ColorUtil.BLACK));
+
 		
 		myContainer.add(scoreTextLabel);
 		myContainer.add(scoreLabel);
@@ -51,6 +56,7 @@ public class PointsView extends Container implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		IGameWorld gw = (IGameWorld) data;
+		
 		this.scoreLabel.setText(gw.getScore());
 		this.livesLabel.setText(gw.getLives());
 		this.missilesLabel.setText(gw.getMissiles());
