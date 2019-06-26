@@ -55,7 +55,7 @@ public class PlayerShip extends Ship implements ISteerable{
 	 * @param PS PlayerShip object
 	 */
 	public void resetPlayerShip() {
-		this.setLocation(GameWorld.getWidth(), GameWorld.getHeight());
+		this.setLocation(GameWorld.getWidth()/2, GameWorld.getHeight()/2);
 		this.setSpeed(INIT_SPEED_PS);
 		this.setDirection(INIT_DIR_PS);
 		this.setMissileCount(INIT_M_PS);
@@ -135,8 +135,8 @@ public class PlayerShip extends Ship implements ISteerable{
 	 * of the PlayerShip or Launcher.
 	 */
 	public void jump() {
-		this.setLocation(CENTER_X, CENTER_Y);
-		this.steerableMissileLauncher.setLocation(CENTER_X, CENTER_Y);
+		this.setLocation(GameWorld.getWidth()/2, GameWorld.getHeight()/2);
+		this.steerableMissileLauncher.setLocation(GameWorld.getWidth()/2, GameWorld.getHeight()/2);
 	}
 	
 	///////////////////////////End PlayerShip Movement Methods/////////////////////

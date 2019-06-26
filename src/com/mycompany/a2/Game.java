@@ -17,6 +17,7 @@ public class Game extends Form implements Runnable{
 	private GameWorld gw;	
 	private MapView mv;
 	private PointsView pv;
+	private UITimer timer;
 	
 	public Game() {
 		gw = GameWorld.getInstance();

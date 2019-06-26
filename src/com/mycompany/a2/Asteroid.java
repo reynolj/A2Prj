@@ -1,6 +1,8 @@
 package com.mycompany.a2;
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point;
 
 public class Asteroid extends MoveableGameObject{
 	private int size;
@@ -11,7 +13,7 @@ public class Asteroid extends MoveableGameObject{
 	 */
 	public Asteroid() {
 		super();
-		this.setColor(ColorUtil.rgb(255,255,0));
+		this.setColor(ColorUtil.rgb(89,48,1));
 		this.size = R.nextInt(MAX_A_SIZE - MIN_A_SIZE + 1) + MIN_A_SIZE;
 	}
 	
@@ -25,5 +27,14 @@ public class Asteroid extends MoveableGameObject{
 		
 		return header + parentDesc + localDesc;
 	}
-
+	
+	public void draw(Graphics g, Point p) {
+		g.setColor(this.getColor());
+		g.fillArc( (int) this.getLocation().getX() + p.getX(), 
+				   (int) this.getLocation().getY() + p.getY(), 
+				   this.size + 15, 
+				   this.size + 15, 
+				   0, 
+				   360);
+	}
 }

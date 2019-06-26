@@ -3,14 +3,15 @@ package com.mycompany.a2;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Container;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point;
 import com.codename1.ui.plaf.Border;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class MapView extends Container implements Observer {
-		private GameObjectCollection store = null;
-	
+	private GameObjectCollection store = null;
+	private Point pCmpRelPrnt = null;
 	
 	public MapView() {
 		Container myView = new Container();
@@ -22,15 +23,15 @@ public class MapView extends Container implements Observer {
 	
 	public void paint(Graphics g) {
 		super.paint(g);
+		Point pCmpRelPrnt = new Point(getX(), getY());
 		if (store !=null) {
 			if ( !store.isEmpty() ) {
 				for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 					GameObject o = (GameObject) i.next();
-					o.draw(g);
+					o.draw(g, pCmpRelPrnt);
 				}
 			}
-		}
-		
+		}		
 	}
 	
 	@Override

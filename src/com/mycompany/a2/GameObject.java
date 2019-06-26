@@ -1,6 +1,7 @@
 package com.mycompany.a2;
 
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point;
 import com.codename1.ui.geom.Point2D;
 import com.codename1.charts.util.ColorUtil;
 import java.lang.Math;
@@ -88,8 +89,11 @@ public abstract class GameObject implements IGameObject{
 		return ret;
 	}
 	
-	public void draw(Graphics g) {
+	public void draw(Graphics g, Point p) {
 		g.setColor(this.color);
-		g.drawRect((int) this.getLocation().getX(), (int) this.getLocation().getY(), 10, 10);
+		g.drawRect((int) this.getLocation().getX() + p.getX(), 
+				(int) this.getLocation().getY() + p.getY(), 
+				10, 
+				10);
 	}
 }
