@@ -17,6 +17,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	private GameObjectCollection store = new GameObjectCollection();
 	private int playerScore, playerLives, clock;
 	private boolean soundOn = true;
+	private boolean timerOn = true;
 
 	private static int mvWidth = 0;
 	private static int mvHeight = 0;
@@ -85,6 +86,10 @@ public class GameWorld extends Observable implements IGameWorld{
 		return (soundOn == true) ? "On" : "Off";
 	}
 	
+	public boolean getTimerStatus() {
+		return timerOn;
+	}
+	
 	/**
 	 * Getter for time
 	 * return String
@@ -103,6 +108,10 @@ public class GameWorld extends Observable implements IGameWorld{
 	//*****************************End of Getter Methods******************************//
 	
 	//****************************Setter Methods****************************//
+	
+	public void setTimerStatus(boolean status) {
+		timerOn = status;
+	}
 	
 	public void setWidth(int width) {
 		mvWidth = width;

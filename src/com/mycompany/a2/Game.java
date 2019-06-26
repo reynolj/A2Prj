@@ -17,6 +17,7 @@ public class Game extends Form implements Runnable{
 	private GameWorld gw;	
 	private MapView mv;
 	private PointsView pv;
+	private UITimer timer;
 	
 	public Game() {
 		gw = GameWorld.getInstance();
@@ -65,9 +66,7 @@ public class Game extends Form implements Runnable{
 		checkSoundOn.setCommand(setSound);
 		
 		//Sound Checkbox Aesthetics
-		checkSoundOn.getAllStyles().setBgTransparency(255);
-		checkSoundOn.getAllStyles().setBgColor(ColorUtil.LTGRAY);
-		checkSoundOn.getAllStyles().setFgColor(ColorUtil.WHITE);
+		setCheckBox(checkSoundOn);
 		myToolbar.addComponentToSideMenu(checkSoundOn);		
 		
 		//About Command
@@ -135,6 +134,13 @@ public class Game extends Form implements Runnable{
 		addKeyListener('j', myJump);
 		westContainer.add(jump);
 		
+		//Timer command (pause and unpause)
+		Button pause = new Button("Pause");
+		setButton(pause);
+		PauseCommand myPause = new PauseCommand(this, gw);
+		pause.setCommand(myPause);
+		westContainer.add(pause);
+		
 		//****************************End of West Container*********************************//
 		
 		//****************************Commands with only KeyListeners***********************//
@@ -199,7 +205,7 @@ public class Game extends Form implements Runnable{
 		this.add(BorderLayout.WEST,westContainer);
 		
 		//create timer and provide a runnable (which is this form)
-		UITimer timer = new UITimer(this);
+		timer = new UITimer(this);
 		//make the timer tick every second and bind it to this form
 		timer.schedule(1000, true, this);
 		
@@ -215,12 +221,31 @@ public class Game extends Form implements Runnable{
 		button.getAllStyles().setFgColor(ColorUtil.WHITE);
 		button.getAllStyles().setBorder(Border.createBevelRaised());
 		button.getAllStyles().setBorder(Border.createBevelLowered());
+  		button.getAllStyles().setMargin(TOP, 1);
+  		button.getAllStyles().setMargin(BOTTOM, 1);
+		
+  		button.getDisabledStyle().setBgTransparency(255);
+  		button.getDisabledStyle().setBgColor(ColorUtil.LTGRAY);
+  		button.getDisabledStyle().setFgColor(ColorUtil.WHITE);
+  		button.getDisabledStyle().setStrikeThru(true);
+	}
+	
+	private void setCheckBox(CheckBox chk) {
+		chk.getAllStyles().setBgTransparency(128);
+		chk.getAllStyles().setBgColor(ColorUtil.BLUE);
+		chk.getAllStyles().setFgColor(ColorUtil.WHITE);
 	}
 
 	@Override
 	public void run() {
 		gw.tick();
-		System.out.println("Map Width: " + gw.getWidth() + " Height: " + gw.getHeight());
-		
+	}
+	
+	public void resumeTimer() {
+		timer.schedule(1000, true, this);
+	}
+	
+	public void stopTimer() {
+		timer.cancel();
 	}
 }
