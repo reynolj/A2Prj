@@ -1,7 +1,7 @@
 package com.mycompany.a2;
 
 public interface IGameWorld {
-	//getCollection();
+	GameObjectCollection getCollection();
 	String getScore();
 	String getMissiles();
 	String getLives();

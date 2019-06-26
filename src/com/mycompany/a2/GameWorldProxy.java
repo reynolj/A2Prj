@@ -43,4 +43,9 @@ public class GameWorldProxy extends Observable implements IGameWorld {
 	public void points() {
 		gw.points();
 	}
+
+	@Override
+	public GameObjectCollection getCollection() {
+		return gw.getCollection();
+	}
 }

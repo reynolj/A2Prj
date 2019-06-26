@@ -105,6 +105,10 @@ public class GameWorld extends Observable implements IGameWorld{
 	public static int getHeight() {
 		return mvHeight;
 	}
+	
+	public GameObjectCollection getCollection() {
+		return store;
+	}
 	//*****************************End of Getter Methods******************************//
 	
 	//****************************Setter Methods****************************//
