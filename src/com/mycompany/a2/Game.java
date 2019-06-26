@@ -10,9 +10,10 @@ import com.codename1.ui.Toolbar;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
+import com.codename1.ui.util.UITimer;
 import com.mycompany.a2.commands.*;
 
-public class Game extends Form {
+public class Game extends Form implements Runnable{
 	private GameWorld gw;	
 	private MapView mv;
 	private PointsView pv;
@@ -197,7 +198,15 @@ public class Game extends Form {
 		this.add(BorderLayout.CENTER,mv);
 		this.add(BorderLayout.WEST,westContainer);
 		
+		//create timer and provide a runnable (which is this form)
+		UITimer timer = new UITimer(this);
+		//make the timer tick every second and bind it to this form
+		timer.schedule(1000, true, this);
+		
 		this.show();
+		
+		gw.setWidth(mv.getWidth());
+		gw.setHeight(mv.getHeight());
 	}
 	
 	private void setButton(Button button) {
@@ -206,5 +215,12 @@ public class Game extends Form {
 		button.getAllStyles().setFgColor(ColorUtil.WHITE);
 		button.getAllStyles().setBorder(Border.createBevelRaised());
 		button.getAllStyles().setBorder(Border.createBevelLowered());
+	}
+
+	@Override
+	public void run() {
+		gw.tick();
+		System.out.println("Map Width: " + gw.getWidth() + " Height: " + gw.getHeight());
+		
 	}
 }

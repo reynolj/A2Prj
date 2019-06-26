@@ -18,6 +18,8 @@ public class GameWorld extends Observable implements IGameWorld{
 	private int playerScore, playerLives, clock;
 	private boolean soundOn = true;
 
+	private static int mvWidth = 0;
+	private static int mvHeight = 0;
 	
 	private GameWorld() {}
 	
@@ -90,7 +92,27 @@ public class GameWorld extends Observable implements IGameWorld{
 	public String getTime() {
 		return String.valueOf(clock);
 	}
+	
+	public static int getWidth() {
+		return mvWidth;
+	}
+	
+	public static int getHeight() {
+		return mvHeight;
+	}
 	//*****************************End of Getter Methods******************************//
+	
+	//****************************Setter Methods****************************//
+	
+	public void setWidth(int width) {
+		mvWidth = width;
+	}
+	
+	public void setHeight(int height) {
+		mvHeight = height;
+	}
+	
+	//*****************************End of Setter Methods******************************//
 	
 	//****************************No Update Needed Methods****************************//
 	

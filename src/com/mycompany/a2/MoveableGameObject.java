@@ -76,8 +76,8 @@ public abstract class MoveableGameObject extends GameObject implements IMoveable
 			int myDirection = (90 - (this.getDirection()));	// gets the true degrees using proper math representation.
 			double newX = this.getLocation().getX() + Math.cos((Math.toRadians(myDirection))) * this.getSpeed();
 			double newY = this.getLocation().getY() + Math.sin((Math.toRadians(myDirection))) * this.getSpeed();
-			newX = (newX + MAX_X) % MAX_X;					// using mod to have object pop up on the other side of the game board.
-			newY = (newY + MAX_Y) % MAX_Y;					// using mod to have object pop up on the other side of the game board.
+			newX = (newX + GameWorld.getWidth()) % GameWorld.getWidth();					// using mod to have object pop up on the other side of the game board.
+			newY = (newY + GameWorld.getHeight()) % GameWorld.getHeight();					// using mod to have object pop up on the other side of the game board.
 			this.setLocation(newX, newY);
 			
 			// If this is a PlayerShip, we need to update our SteerableMissileLauncher's location as well.

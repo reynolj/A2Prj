@@ -15,7 +15,8 @@ public abstract class GameObject implements IGameObject{
 	 * Defines default location (random x and y) and color for all game objects.
 	 */
 	public GameObject() {
-		this.location = new Point2D(MAX_X * R.nextDouble(), MAX_Y * R.nextDouble());
+		//this.location = new Point2D(MAX_X * R.nextDouble(), MAX_Y * R.nextDouble());
+		this.location = new Point2D(GameWorld.getWidth() * R.nextDouble(), GameWorld.getHeight() * R.nextDouble());
 		this.color = ColorUtil.rgb(0, 0, 0);
 	}
 	
