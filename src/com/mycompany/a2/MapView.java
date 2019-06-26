@@ -9,23 +9,34 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class MapView extends Container implements Observer {
+		private GameObjectCollection store = null;
 	
 	
 	public MapView() {
 		Container myView = new Container();
 		myView.getAllStyles().setBorder(Border.createLineBorder(3,ColorUtil.BLACK));
+		myView.getAllStyles().setBgColor(ColorUtil.WHITE);
 	
 		this.add(myView);
 	}
 	
 	public void paint(Graphics g) {
 		super.paint(g);
+		if (store !=null) {
+			if ( !store.isEmpty() ) {
+				for ( IIterator i = store.getIterator(); i.hasNext(); ) {
+					GameObject o = (GameObject) i.next();
+					o.draw(g);
+				}
+			}
+		}
 		
 	}
 	
 	@Override
 	public void update(Observable observable, Object data) {
 		IGameWorld gw = (IGameWorld) data;
+		store = gw.getCollection();
 		gw.map();
 		this.repaint();
 	}

@@ -220,7 +220,7 @@ public class Game extends Form implements Runnable{
 	@Override
 	public void run() {
 		gw.tick();
-		System.out.println("Map Width: " + gw.getWidth() + " Height: " + gw.getHeight());
+		System.out.println("Map Width: " + GameWorld.getWidth() + " Height: " + GameWorld.getHeight());
 		
 	}
 }
