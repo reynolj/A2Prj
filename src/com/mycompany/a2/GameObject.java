@@ -89,8 +89,8 @@ public abstract class GameObject implements IGameObject{
 	
 	public void draw(Graphics g, Point2D p) {
 		g.setColor(this.color);
-		g.drawRect( (int) (this.getLocation().getX() + p.getX()), 
-					(int) (this.getLocation().getY() + p.getY()), 
+		g.drawRect( (int) ((this.getLocation().getX() - 5) + p.getX()), 
+					(int) ((this.getLocation().getY() - 5) + p.getY()), 
 					10, 
 					10);
 	}
