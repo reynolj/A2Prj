@@ -2,7 +2,7 @@ package com.mycompany.a2;
 
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
-import com.codename1.ui.geom.Point;
+import com.codename1.ui.geom.Point2D;
 
 public class Asteroid extends MoveableGameObject{
 	private int size;
@@ -28,10 +28,10 @@ public class Asteroid extends MoveableGameObject{
 		return header + parentDesc + localDesc;
 	}
 	
-	public void draw(Graphics g, Point p) {
+	public void draw(Graphics g, Point2D p) {
 		g.setColor(this.getColor());
-		g.fillArc( (int) this.getLocation().getX() + p.getX(), 
-				   (int) this.getLocation().getY() + p.getY(), 
+		g.fillArc( (int) (this.getLocation().getX() + p.getX()), 
+				   (int) (this.getLocation().getY() + p.getY()), 
 				   this.size + 15, 
 				   this.size + 15, 
 				   0, 

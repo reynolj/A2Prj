@@ -19,17 +19,17 @@ public class PointsView extends Container implements Observer {
 	
 	public PointsView() {
 		this.setLayout(new FlowLayout(CENTER));
-		Label scoreTextLabel = new Label("Points: ");
-		Label livesTextLabel = new Label("Lives: ");
-		Label missilesTextLabel = new Label("Missiles: ");
-		Label soundTextLabel = new Label("Sound: ");
-		Label timeTextLabel = new Label("Time: ");
+		Label scoreTextLabel	 	= 		new Label("Points: ");
+		Label livesTextLabel 	 	= 		new Label("Lives: ");
+		Label missilesTextLabel  	= 		new Label("Missiles: ");
+		Label soundTextLabel 	 	= 		new Label("Sound: ");
+		Label timeTextLabel 	 	= 		new Label("Time: ");
 		
-		scoreLabel = new Label("");
-		livesLabel = new Label("");
-		missilesLabel = new Label("");
-		soundLabel = new Label("");
-		timeLabel = new Label("");
+		scoreLabel 		= 	new Label("");
+		livesLabel 		= 	new Label("");
+		missilesLabel 	= 	new Label("");
+		soundLabel 		= 	new Label("");
+		timeLabel 		= 	new Label("");
 		
 		scoreTextLabel.getAllStyles().setFgColor(ColorUtil.rgb(0,0,255));
 		

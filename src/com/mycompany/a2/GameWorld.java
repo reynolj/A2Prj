@@ -86,6 +86,10 @@ public class GameWorld extends Observable implements IGameWorld{
 		return (soundOn == true) ? "On" : "Off";
 	}
 	
+	/**
+	 * Returns status of timer
+	 * @return Boolean
+	 */
 	public boolean getTimerStatus() {
 		return timerOn;
 	}
@@ -98,14 +102,26 @@ public class GameWorld extends Observable implements IGameWorld{
 		return String.valueOf(clock);
 	}
 	
+	/**
+	 * Returns width of the GameWorld container i.e. MapView
+	 * @return int
+	 */
 	public static int getWidth() {
 		return mvWidth;
 	}
 	
+	/**
+	 * Returns height of the GameWorld container i.e. MapView
+	 * @return int
+	 */
 	public static int getHeight() {
 		return mvHeight;
 	}
 	
+	/** (non-Javadoc)
+	 * @see com.mycompany.a2.IGameWorld#getCollection()
+	 */
+	@Override
 	public GameObjectCollection getCollection() {
 		return store;
 	}
@@ -158,16 +174,25 @@ public class GameWorld extends Observable implements IGameWorld{
 		System.out.println(); // for readability
 	}
 	
+	/**
+	 * Not Implemented
+	 */
 	public void _new() {
 		System.out.println("- NEW");
 	    System.out.println(); // for readability
 	}
 	
+	/**
+	 * Not Implemented
+	 */
 	public void undo() {
 		System.out.println("- UNDO");
 	    System.out.println(); // for readability
 	}
 	
+	/**
+	 * Not implemented
+	 */
 	public void save() {
 		System.out.println("- SAVE");
 	    System.out.println(); // for readability

@@ -3,7 +3,7 @@ package com.mycompany.a2;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Container;
 import com.codename1.ui.Graphics;
-import com.codename1.ui.geom.Point;
+import com.codename1.ui.geom.Point2D;
 import com.codename1.ui.plaf.Border;
 
 import java.util.Observable;
@@ -23,7 +23,7 @@ public class MapView extends Container implements Observer {
 		super.paint(g);
 		g.setColor(ColorUtil.WHITE);
 		g.fillRect(getX(), getY(), GameWorld.getWidth(), GameWorld.getHeight());
-		Point pCmpRelPrnt = new Point(getX(), getY());
+		Point2D pCmpRelPrnt = new Point2D(getX(), getY());
 		if (store !=null) {
 			if ( !store.isEmpty() ) {
 				for ( IIterator i = store.getIterator(); i.hasNext(); ) {
