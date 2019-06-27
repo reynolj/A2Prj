@@ -1,5 +1,8 @@
 package com.mycompany.a2;
 
+import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point2D;
+
 public class Missile extends MoveableGameObject{
 	private int fuelLevel;
 	private Ship owner;
@@ -64,6 +67,19 @@ public class Missile extends MoveableGameObject{
 	 */
 	public void useFuel() {
 		this.fuelLevel--;
+	}
+	
+	@Override
+	public void draw(Graphics g, Point2D p) {
+		int width = 2;
+		int height = 6;  
+		int originX = (int) (this.getLocation().getX() + p.getX() - width/2); 
+		int originY = (int) (this.getLocation().getY() + p.getY() - height/2);
+		g.setColor(this.getColor());
+		g.fillRect(	originX, 
+					originY, 
+					width, 
+					height);
 	}
 	
 }
