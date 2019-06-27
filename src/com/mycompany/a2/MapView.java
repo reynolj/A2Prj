@@ -11,18 +11,18 @@ import java.util.Observer;
 
 public class MapView extends Container implements Observer {
 	private GameObjectCollection store = null;
-	private Point pCmpRelPrnt = null;
 	
 	public MapView() {
 		Container myView = new Container();
 		myView.getAllStyles().setBorder(Border.createLineBorder(3,ColorUtil.BLACK));
-		myView.getAllStyles().setBgColor(ColorUtil.WHITE);
 	
 		this.add(myView);
 	}
 	
 	public void paint(Graphics g) {
 		super.paint(g);
+		g.setColor(ColorUtil.WHITE);
+		g.fillRect(getX(), getY(), GameWorld.getWidth(), GameWorld.getHeight());
 		Point pCmpRelPrnt = new Point(getX(), getY());
 		if (store !=null) {
 			if ( !store.isEmpty() ) {
