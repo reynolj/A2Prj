@@ -50,10 +50,10 @@ public class SpaceStation extends FixedGameObject {
 		int originX = (int) (this.getLocation().getX() + p.getX());
 		int originY = (int) (this.getLocation().getY() + p.getY());
 		
-		int shipHeight  = 45;
-		int shipWidth   = 60;
+		int shipHeight  = 64;
+		int shipWidth   = 80;
 		
-		int lightDiameter = 20;
+		int lightDiameter = 32;
 		int lightRadius = lightDiameter/2;
 
 		int shipX = originX - shipWidth/2;
@@ -84,7 +84,7 @@ public class SpaceStation extends FixedGameObject {
 		
 		//Blinking light
 		if (this.lightOn == true) {
-			g.setColor(ColorUtil.rgb(255, 0, 0));
+			g.setColor(ColorUtil.YELLOW);
 			g.fillArc(lightX,
 					  lightY,
 					  lightDiameter,

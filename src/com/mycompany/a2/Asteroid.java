@@ -29,8 +29,8 @@ public class Asteroid extends MoveableGameObject{
 	}
 	
 	public void draw(Graphics g, Point2D p) {
-		int height  =  this.size + 15;
-		int width   =  this.size + 15;
+		int height  =  this.size + 30;
+		int width   =  this.size + 30;
 		int originX = (int) (this.getLocation().getX() + p.getX() - width/2);
 		int originY = (int) (this.getLocation().getY() + p.getY() - height/2);
 		
