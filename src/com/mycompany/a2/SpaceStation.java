@@ -1,6 +1,8 @@
 package com.mycompany.a2;
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point2D;
 
 public class SpaceStation extends FixedGameObject {
 	private int blinkRate;
@@ -13,7 +15,7 @@ public class SpaceStation extends FixedGameObject {
 	 */
 	public SpaceStation() {
 		super();
-		this.setColor(ColorUtil.rgb(0,255,0));	  		   
+		this.setColor(ColorUtil.GRAY);	  		   
 		this.blinkRate = R.nextInt(MAX_RATE + 1);
 		this.lightOn = true;
 	}
@@ -42,5 +44,57 @@ public class SpaceStation extends FixedGameObject {
 	 */
 	public int getBlinkRate() {
 		return this.blinkRate;
+	}
+	
+	public void draw(Graphics g, Point2D p) {
+		int originX = (int) (this.getLocation().getX() + p.getX());
+		int originY = (int) (this.getLocation().getY() + p.getY());
+		
+		int shipHeight  = 45;
+		int shipWidth   = 60;
+		
+		int lightDiameter = 20;
+		int lightRadius = lightDiameter/2;
+
+		int shipX = originX - shipWidth/2;
+		int shipY = originY;
+		int lightX = originX - lightRadius;
+		int lightY = originY + lightRadius;
+		
+		//System.out.println("Origin x,y: " + originX + ", " + originY);
+		g.setColor(this.getColor());
+		
+		//Top arc
+		g.fillArc(shipX,
+				  shipY,
+				  shipWidth,
+				  shipHeight,
+				  0,
+				  180
+				);
+		//System.out.println("Starting x,y of spaceship: " + shipX + ", " + shipY);
+		//Bottom arc
+		g.fillArc(shipX,
+				  shipY,
+				  shipWidth,
+				  shipHeight,
+				  0,
+				  -180
+				);
+		
+		//Blinking light
+		if (this.lightOn == true) {
+			g.setColor(ColorUtil.rgb(255, 0, 0));
+			g.fillArc(lightX,
+					  lightY,
+					  lightDiameter,
+					  lightDiameter,
+					  0,
+					  360
+					);
+		}
+		//System.out.println("Starting x,y of light: " + lightX + ", " + lightY);
+
+
 	}
 }

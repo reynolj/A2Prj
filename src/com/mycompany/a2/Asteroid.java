@@ -29,11 +29,16 @@ public class Asteroid extends MoveableGameObject{
 	}
 	
 	public void draw(Graphics g, Point2D p) {
+		int height  =  this.size + 15;
+		int width   =  this.size + 15;
+		int originX = (int) (this.getLocation().getX() + p.getX() - width/2);
+		int originY = (int) (this.getLocation().getY() + p.getY() - height/2);
+		
 		g.setColor(this.getColor());
-		g.fillArc( (int) (this.getLocation().getX() + p.getX()), 
-				   (int) (this.getLocation().getY() + p.getY()), 
-				   this.size + 15, 
-				   this.size + 15, 
+		g.fillArc( originX,
+				   originY, 
+				   width,
+				   height,
 				   0, 
 				   360);
 	}
