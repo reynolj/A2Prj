@@ -46,20 +46,28 @@ public class NonPlayerShip extends Ship{
 	@Override
 	public void draw(Graphics g, Point2D p) {
 		int height = this.size + 30; 
-		int width = (this.size /2) + 30 ; 
+		int width = (this.size / 2) + 30 ; 
 		int originX = (int) (this.getLocation().getX() + p.getX() - width/2); 
 		int originY = (int) (this.getLocation().getY() + p.getY() - height/2);
 		
+		// Draw lighter front of ship
 		g.setColor(this.getColor());
 		g.fillArc(	originX, 
 					originY, 
 					width, 
 					height, 
 					180, 
-					180);
+					60);
+		g.fillArc(	originX, 
+					originY, 
+					width, 
+					height, 
+					300, 
+					60);
+		// Draw darker rear of ship
 		g.setColor(ColorUtil.rgb(192, 0, 0));
 		g.fillArc(	originX, 
-					originY - (height/4) + 1, 
+					originY - height/4, 
 					width, 
 					height, 
 					200, 
