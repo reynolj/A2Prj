@@ -80,9 +80,14 @@ public abstract class MoveableGameObject extends GameObject implements IMoveable
 			newY = (newY + GameWorld.getHeight()) % GameWorld.getHeight();					// using mod to have object pop up on the other side of the game board.
 			this.setLocation(newX, newY);
 			
+			// If this is a NPS, we need to update it's missileLauncher location
+			if (this instanceof NonPlayerShip) {
+				((NonPlayerShip) this).moveML();
+			}
+			
 			// If this is a PlayerShip, we need to update our SteerableMissileLauncher's location as well.
 			if (this instanceof PlayerShip) {
-				((PlayerShip) this).setMLLocation();
+				((PlayerShip) this).moveML();
 			}
 			
 			// If this is a Missile, we need to decrement the fuel left.

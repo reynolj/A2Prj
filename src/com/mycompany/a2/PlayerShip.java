@@ -164,7 +164,7 @@ public class PlayerShip extends Ship implements ISteerable{
 	/**
 	 * Sets the SteerableMissileLauncher's new location after move.
 	 */
-	public void setMLLocation() {
+	public void moveML() {
 		steerableMissileLauncher.setLocation(this.getLocation().getX(), this.getLocation().getY());
 	}
 	
