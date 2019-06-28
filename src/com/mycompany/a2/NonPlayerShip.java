@@ -55,15 +55,15 @@ public class NonPlayerShip extends Ship{
 					originY, 
 					width, 
 					height, 
-					0, 
+					180, 
 					180);
-		g.setColor(ColorUtil.WHITE);
+		g.setColor(ColorUtil.rgb(192, 0, 0));
 		g.fillArc(	originX, 
-					originY + (height/4) + 1, 
+					originY - (height/4) + 1, 
 					width, 
-					height/2, 
-					0, 
-					180);
+					height, 
+					200, 
+					140);
 		
 		this.missileLauncher.draw(g, p);
 	}
