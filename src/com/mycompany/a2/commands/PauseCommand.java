@@ -22,11 +22,11 @@ public class PauseCommand extends Command {
 		boolean timer_status = gw.getTimerStatus();
 		
 		if ( timer_status == ON ) {
-			g.stopTimer();
+			g.pause();
 			gw.setTimerStatus(OFF);
 			((Button) e.getActualComponent()).setText("Unpause");
 		} else {
-			g.resumeTimer();
+			g.resume();
 			gw.setTimerStatus(ON);
 			((Button) e.getActualComponent()).setText("Pause");
 		}

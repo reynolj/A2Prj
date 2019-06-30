@@ -176,7 +176,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 */
 	public void about() {
 		System.out.println("- ABOUT");
-		Dialog.show("About","Jake Reynolds & Sam Hendryx \nCSC 133 - Asteroids", "Ok", null);
+		Dialog.show("About","Jake Reynolds & Sam Hendryx \nCSC 133 - Asteroids\nBackground music by: Sam Hendryx", "Ok", null);
 		System.out.println(); // for readability
 	}
 	

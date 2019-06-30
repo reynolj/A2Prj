@@ -17,6 +17,7 @@ public class Game extends Form implements Runnable{
 	private GameWorld gw;	
 	private MapView mv;
 	private PointsView pv;
+	private BackgroundMusic bg;
 	private UITimer timer;
 	
 	public Game() {
@@ -27,6 +28,13 @@ public class Game extends Form implements Runnable{
 		gw.addObserver(pv);
 		gw.addObserver(mv);
 
+		//*************************Background Music**************************************//
+		
+		bg = new BackgroundMusic("BloodSport.mp3");
+		bg.play();
+		
+		//*************************End Background Music**********************************//
+		
 		this.setLayout(new BorderLayout());
 		
 		//*************************Toolbar***********************************************//
@@ -241,11 +249,13 @@ public class Game extends Form implements Runnable{
 		gw.tick();
 	}
 	
-	public void resumeTimer() {
+	public void resume() {
+		bg.play();
 		timer.schedule(gw.getTickTime(), true, this);
 	}
 	
-	public void stopTimer() {
+	public void pause() {
+		bg.pause();
 		timer.cancel();
 	}
 }
