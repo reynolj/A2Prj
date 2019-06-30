@@ -83,9 +83,18 @@ public class SpaceStation extends FixedGameObject {
 				);
 		
 		//Blinking light
+		g.setColor(ColorUtil.YELLOW);
 		if (this.lightOn == true) {
 			g.setColor(ColorUtil.YELLOW);
 			g.fillArc(lightX,
+					  lightY,
+					  lightDiameter,
+					  lightDiameter,
+					  0,
+					  360
+					);
+		} else {
+			g.drawArc(lightX,
 					  lightY,
 					  lightDiameter,
 					  lightDiameter,

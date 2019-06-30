@@ -4,7 +4,7 @@ import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point2D;
 
-public class PlayerShip extends Ship implements ISteerable{
+public class PlayerShip extends Ship implements ISteerable {
 	private static PlayerShip PS = null;
 	private SteerableMissileLauncher steerableMissileLauncher;
 	
@@ -192,7 +192,6 @@ public class PlayerShip extends Ship implements ISteerable{
 	@Override
 	public void draw(Graphics g, Point2D p) {
 		int[] xPoints = {0,0,5,5,7,7,31,31,33,33,38,38,33,33,31,31,30,29,28,27,26,23,19,15,12,11,10,9,8,7,7,5,5,0};
-		//int[] yPoints = {20,35,35,31,31,34,34,31,31,35,35,20,20,26,26,23,17,13,10,8,6,2,0,2,6,8,10,13,17,23,26,26,20,20};
 		int[] yPoints = {15,0,0,4,4,1,1,4,4,0,0,15,15,9,9,12,18,22,25,27,29,33,35,33,29,27,25,22,18,12,9,9,15,15};
 		int xOffset = -19;
 		int yOffset = -17;
