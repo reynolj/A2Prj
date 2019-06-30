@@ -12,6 +12,8 @@ public class GameWorld extends Observable implements IGameWorld{
 		  				SCORE_A	   = 100,
 		  				SCORE_NPS  = 300;
 	
+	private final static int TICKTIME = 50;
+	
 	private static GameWorld gw = null;
 	
 	private GameObjectCollection store = new GameObjectCollection();
@@ -124,6 +126,10 @@ public class GameWorld extends Observable implements IGameWorld{
 	@Override
 	public GameObjectCollection getCollection() {
 		return store;
+	}
+	
+	public int getTickTime() {
+		return TICKTIME;
 	}
 	//*****************************End of Getter Methods******************************//
 	
@@ -944,18 +950,25 @@ public class GameWorld extends Observable implements IGameWorld{
 			for ( IIterator i = store.getIterator(); i.hasNext(); ) {
 				GameObject o = (GameObject) i.next();
 				if (o instanceof IMoveable) {
-					((IMoveable) o).move();
+					((IMoveable) o).move(TICKTIME);
 					
 					// If the MoveableObject is a Missile and it has run out of fuel,
 					// add it to the removeItems Vector for disposal outside of the loop.
 					if (o instanceof Missile && ((Missile) o).getFuel() <= 0) {
 						removeItems.add(o);
 					}
+					
+					// If this is a Missile, we need to decrement the fuel left.
+					if (o instanceof Missile) {
+						if (((double)(clock*TICKTIME) % 500) == 0) {
+							((Missile) o).useFuel();
+						}						
+					}
 				}
 				// Blink the SpaceStation if the proper amount of time has elapsed
 				else if (o instanceof SpaceStation) {
 					int blinkRate = ((SpaceStation) o).getBlinkRate();
-					if (blinkRate != 0 && clock % blinkRate == 0) {
+					if (blinkRate != 0 && ((double)(clock*TICKTIME)/1000) % blinkRate == 0) {
 						((SpaceStation) o).toggleLight();
 					}
 				}

@@ -66,7 +66,7 @@ public abstract class MoveableGameObject extends GameObject implements IMoveable
 	 * 
 	 * We can only directly move MoveableObjects, but we CANNOT directly move the SteerableMissileLauncher.
 	 */
-	public void move() {
+	public void move(int time) {
 		if (this instanceof SteerableMissileLauncher) {
 			//Don't move the SteerableMissileLauncher directly.
 			//It's direction is not the direction of movement.
@@ -74,8 +74,8 @@ public abstract class MoveableGameObject extends GameObject implements IMoveable
 			//PlayerShip will update the location of SteerableMissileLauncher.
 		} else {
 			int myDirection = (90 - (this.getDirection()));	// gets the true degrees using proper math representation.
-			double newX = this.getLocation().getX() + Math.cos((Math.toRadians(myDirection))) * this.getSpeed();
-			double newY = this.getLocation().getY() + Math.sin((Math.toRadians(myDirection))) * this.getSpeed();
+			double newX = this.getLocation().getX() + (Math.cos(Math.toRadians(myDirection)) * ((double) this.getSpeed() * ((double) time/100)));
+			double newY = this.getLocation().getY() + (Math.sin(Math.toRadians(myDirection)) * ((double) this.getSpeed() * ((double) time/100)));
 			newX = (newX + GameWorld.getWidth()) % GameWorld.getWidth();					// using mod to have object pop up on the other side of the game board.
 			newY = (newY + GameWorld.getHeight()) % GameWorld.getHeight();					// using mod to have object pop up on the other side of the game board.
 			this.setLocation(newX, newY);
@@ -88,11 +88,6 @@ public abstract class MoveableGameObject extends GameObject implements IMoveable
 			// If this is a PlayerShip, we need to update our SteerableMissileLauncher's location as well.
 			if (this instanceof PlayerShip) {
 				((PlayerShip) this).moveML();
-			}
-			
-			// If this is a Missile, we need to decrement the fuel left.
-			if (this instanceof Missile) {
-				((Missile) this).useFuel();
 			}
 		}
 	}

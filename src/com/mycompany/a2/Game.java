@@ -207,7 +207,7 @@ public class Game extends Form implements Runnable{
 		//create timer and provide a runnable (which is this form)
 		timer = new UITimer(this);
 		//make the timer tick every second and bind it to this form
-		timer.schedule(1000, true, this);
+		timer.schedule(gw.getTickTime(), true, this);
 		
 		this.show();
 		
@@ -242,7 +242,7 @@ public class Game extends Form implements Runnable{
 	}
 	
 	public void resumeTimer() {
-		timer.schedule(1000, true, this);
+		timer.schedule(gw.getTickTime(), true, this);
 	}
 	
 	public void stopTimer() {
