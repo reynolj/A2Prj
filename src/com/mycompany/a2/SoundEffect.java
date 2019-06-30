@@ -6,31 +6,26 @@ import com.codename1.media.Media;
 import com.codename1.media.MediaManager;
 import com.codename1.ui.Display;
 
-public class BackgroundMusic implements Runnable {
+public class SoundEffect {
 	private Media m;
 	
-	public BackgroundMusic(String fileName) {
+	public SoundEffect(String fileName) {
 		try{
 			InputStream is = Display.getInstance().getResourceAsStream(getClass(), 
 			"/"+fileName);
 			//attach a runnable to run when media has finished playing 
 			//as the last parameter
-			m = MediaManager.createMedia(is, "audio/mpeg", this);
+			m = MediaManager.createMedia(is, "audio/mpeg");
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
-	public void pause(){ m.pause();} 	//pause playing the sound
-	public void play(){ m.play();} 		//continue playing from where we have left off
-
-	@Override
-	public void run() {
-		//start playing from time zero (beginning of the sound file)
-		m.setTime(0);
+	public void play() {
+		//start playing the sound from time zero (beginning of the sound file)
+		m.setTime(0); 
 		m.play();
-		
 	}
 
 }

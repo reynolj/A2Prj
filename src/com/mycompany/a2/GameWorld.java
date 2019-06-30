@@ -349,6 +349,7 @@ public class GameWorld extends Observable implements IGameWorld{
 				PlayerShip.getInstance().decrementMissileCount();
 				System.out.println("The player ship has fired a missile");
 				System.out.println(missile);
+				psLaser.play();
 			} else {
 				System.out.println("ERROR: Missiles depleted.");
 			}
@@ -388,6 +389,7 @@ public class GameWorld extends Observable implements IGameWorld{
 				NPS.decrementMissileCount();
 				System.out.println("The enemy ship has fired a missile");
 				System.out.println(missile);
+				npsLaser.play();
 			} else {
 				System.out.println("ERROR: Missiles depleted.");
 			}
