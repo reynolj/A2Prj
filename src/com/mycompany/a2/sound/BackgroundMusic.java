@@ -1,4 +1,4 @@
-package com.mycompany.a2;
+package com.mycompany.a2.sound;
 
 import java.io.InputStream;
 

@@ -12,6 +12,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.util.UITimer;
 import com.mycompany.a2.commands.*;
+import com.mycompany.a2.interfaces.ISound;
 
 public class Game extends Form implements Runnable, ISound{
 	private GameWorld gw;	
@@ -172,10 +173,10 @@ public class Game extends Form implements Runnable, ISound{
 		addKeyListener(-94, myTurnRight); //right arrow
 		
 		TurnLauncherLeftCommand myTurnLauncherLeft = new TurnLauncherLeftCommand(gw);
-		addKeyListener(44, myTurnLauncherLeft);
+		addKeyListener('<', myTurnLauncherLeft); //changed from 44
 		
 		TurnLauncherRightCommand myTurnLauncherRight = new TurnLauncherRightCommand(gw);
-		addKeyListener(46, myTurnLauncherRight);
+		addKeyListener('>', myTurnLauncherRight); //changed from 46
 		
 		LaunchNPSMissileCommand myLaunchMissile = new LaunchNPSMissileCommand(gw);
 		addKeyListener('L', myLaunchMissile);

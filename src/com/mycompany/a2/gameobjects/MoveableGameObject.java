@@ -1,4 +1,7 @@
-package com.mycompany.a2;
+package com.mycompany.a2.gameobjects;
+
+import com.mycompany.a2.GameWorld;
+import com.mycompany.a2.interfaces.IMoveable;
 
 public abstract class MoveableGameObject extends GameObject implements IMoveable {
 	private int speed;		

@@ -1,7 +1,10 @@
-package com.mycompany.a2;
+package com.mycompany.a2.gameobjects;
 
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point2D;
+import com.mycompany.a2.GameWorld;
+import com.mycompany.a2.interfaces.IDrawable;
+import com.mycompany.a2.interfaces.IGameObject;
 import com.codename1.charts.util.ColorUtil;
 import java.lang.Math;
 import java.util.Random;

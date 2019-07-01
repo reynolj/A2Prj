@@ -2,6 +2,10 @@ package com.mycompany.a2;
 
 import java.util.Vector;
 
+import com.mycompany.a2.gameobjects.GameObject;
+import com.mycompany.a2.interfaces.ICollection;
+import com.mycompany.a2.interfaces.IIterator;
+
 public class GameObjectCollection implements ICollection {
 	private Vector<GameObject> theCollection;
 	

@@ -3,6 +3,17 @@ package com.mycompany.a2;
 import java.util.Observable;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
+import com.mycompany.a2.gameobjects.Asteroid;
+import com.mycompany.a2.gameobjects.GameObject;
+import com.mycompany.a2.gameobjects.Missile;
+import com.mycompany.a2.gameobjects.NonPlayerShip;
+import com.mycompany.a2.gameobjects.PlayerShip;
+import com.mycompany.a2.gameobjects.Ship;
+import com.mycompany.a2.gameobjects.SpaceStation;
+import com.mycompany.a2.interfaces.IGameWorld;
+import com.mycompany.a2.interfaces.IIterator;
+import com.mycompany.a2.interfaces.IMoveable;
+import com.mycompany.a2.interfaces.ISound;
 
 /**
  * Defines a GameWorld Object.
@@ -121,7 +132,7 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 	}
 	
 	/** (non-Javadoc)
-	 * @see com.mycompany.a2.IGameWorld#getCollection()
+	 * @see com.mycompany.a2.interfaces.IGameWorld#getCollection()
 	 */
 	@Override
 	public GameObjectCollection getCollection() {

@@ -1,4 +1,4 @@
-package com.mycompany.a2;
+package com.mycompany.a2.gameobjects;
 
 public abstract class Ship extends MoveableGameObject{
 	private int missileCount;

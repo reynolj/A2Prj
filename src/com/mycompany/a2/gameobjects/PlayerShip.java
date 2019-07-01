@@ -1,8 +1,10 @@
-package com.mycompany.a2;
+package com.mycompany.a2.gameobjects;
 
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point2D;
+import com.mycompany.a2.GameWorld;
+import com.mycompany.a2.interfaces.ISteerable;
 
 public class PlayerShip extends Ship implements ISteerable {
 	private static PlayerShip PS = null;
@@ -110,7 +112,7 @@ public class PlayerShip extends Ship implements ISteerable {
 	 * We can avoid having to check to see if we've gone above 359 degrees by adding 365 degrees and using mod 360.
 	 * This will result in the direction to increase by 5 degrees.
 	 * The missile launcher's direction will change with the ships direction, aswell.
-	 * @see com.mycompany.a1.ISteerable#turnRight()
+	 * @see com.mycompany.a2.interfaces.a1.ISteerable#turnRight()
 	 */
 	public void turnRight() {
 		this.setDirection((this.getDirection()+365) % 360);
@@ -122,7 +124,7 @@ public class PlayerShip extends Ship implements ISteerable {
 	 * We can avoid having to check to see if we've gone below 0 degrees by adding 355 and using mod 360.
 	 * This will result in the direction to decrease by 5 degrees.
 	 * The missile launcher's direction will change with the ships direction, aswell.
-	 * @see com.mycompany.a1.ISteerable#turnLeft()
+	 * @see com.mycompany.a2.interfaces.a1.ISteerable#turnLeft()
 	 */
 	public void turnLeft() {
 		this.setDirection((this.getDirection()+355) % 360);	

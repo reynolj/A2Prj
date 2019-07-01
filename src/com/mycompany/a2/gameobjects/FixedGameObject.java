@@ -1,4 +1,4 @@
-package com.mycompany.a2;
+package com.mycompany.a2.gameobjects;
 
 public abstract class FixedGameObject extends GameObject {
 	private static int ID = 0;

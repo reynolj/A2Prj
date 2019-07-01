@@ -5,6 +5,9 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point2D;
 import com.codename1.ui.plaf.Border;
+import com.mycompany.a2.gameobjects.GameObject;
+import com.mycompany.a2.interfaces.IGameWorld;
+import com.mycompany.a2.interfaces.IIterator;
 
 import java.util.Observable;
 import java.util.Observer;

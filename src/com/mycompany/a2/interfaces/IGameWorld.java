@@ -1,4 +1,6 @@
-package com.mycompany.a2;
+package com.mycompany.a2.interfaces;
+
+import com.mycompany.a2.GameObjectCollection;
 
 public interface IGameWorld {
 	GameObjectCollection getCollection();

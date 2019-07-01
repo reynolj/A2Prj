@@ -1,4 +1,7 @@
-package com.mycompany.a2;
+package com.mycompany.a2.interfaces;
+
+import com.mycompany.a2.sound.BackgroundMusic;
+import com.mycompany.a2.sound.SoundEffect;
 
 public interface ISound {
 	public final BackgroundMusic bg = new BackgroundMusic("BloodSport.mp3");

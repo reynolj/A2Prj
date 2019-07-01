@@ -1,4 +1,6 @@
-package com.mycompany.a2;
+package com.mycompany.a2.gameobjects;
+
+import com.mycompany.a2.interfaces.ISteerable;
 
 public class SteerableMissileLauncher extends MissileLauncher implements ISteerable {
 

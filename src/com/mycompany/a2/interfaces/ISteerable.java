@@ -1,4 +1,4 @@
-package com.mycompany.a2;
+package com.mycompany.a2.interfaces;
 
 /**
  * Interface definition for a steerable object
