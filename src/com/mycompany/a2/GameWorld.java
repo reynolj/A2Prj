@@ -350,7 +350,8 @@ public class GameWorld extends Observable implements IGameWorld{
 				PlayerShip.getInstance().decrementMissileCount();
 				System.out.println("The player ship has fired a missile");
 				System.out.println(missile);
-				psLaser.play();
+				if(soundOn)
+					psLaser.play();
 			} else {
 				System.out.println("ERROR: Missiles depleted.");
 			}
@@ -390,7 +391,8 @@ public class GameWorld extends Observable implements IGameWorld{
 				NPS.decrementMissileCount();
 				System.out.println("The enemy ship has fired a missile");
 				System.out.println(missile);
-				npsLaser.play();
+				if(soundOn)
+					npsLaser.play();
 			} else {
 				System.out.println("ERROR: Missiles depleted.");
 			}
@@ -416,7 +418,8 @@ public class GameWorld extends Observable implements IGameWorld{
 		} else {
 			points();
 			System.out.println("Game Over!");
-			gameOver.play();
+			if(soundOn)
+				gameOver.play();
 		}
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
@@ -477,7 +480,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.remove(NPS);
 			store.remove(missile);
 			System.out.println("A player ship's missile has killed an enemy ship.\nPlayer Score: " + playerScore);
-			npsExplode.play();
+			if(soundOn)
+				npsExplode.play();
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -531,7 +535,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.remove(asteroid);
 			store.remove(missile);
 			System.out.println("A player ship's missile has killed an asteroid.\nPlayer Score: " + playerScore);
-			asteroidExplode.play();
+			if(soundOn)
+				asteroidExplode.play();
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -579,7 +584,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.remove(NPSmissile);
 			System.out.println ("An enemy ship's missile has killed the player ship.");
 			killPS();
-			psExplode.play();
+			if(soundOn)
+				psExplode.play();
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -623,7 +629,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.remove(asteroid);
 			System.out.println("An asteroid has collided with the player ship, killing each other");
 			killPS();
-			psExplode.play();
+			if(soundOn)
+				psExplode.play();
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -668,7 +675,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.remove(asteroid1);
 			store.remove(asteroid2);
 			System.out.println("Two asteroids have collided and killed each other.");
-			asteroidExplode.play();
+			if(soundOn)
+				asteroidExplode.play();
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -718,7 +726,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.remove(asteroid);
 			store.remove(NPS);
 			System.out.println("An enemy ship has colided with an asteroid, killing each other.\n");
-			npsExplode.play();
+			if (soundOn)
+				npsExplode.play();
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -762,7 +771,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			store.remove(NPS);
 			System.out.println("An enemy ship has collided with the player ship, killing each other.");
 			killPS();
-			psExplode.play();
+			if(soundOn)
+				psExplode.play();
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -860,7 +870,8 @@ public class GameWorld extends Observable implements IGameWorld{
 			PlayerShip.getInstance().jump();
 			System.out.println("The PlayerShip has jumped to hyperspace:\n" +
 			                    PlayerShip.getInstance());
-			hyperSpace.play();
+			if(soundOn)
+				hyperSpace.play();
 		} else {
 			System.out.println("ERROR: No player ship in Game World.");
 		}
