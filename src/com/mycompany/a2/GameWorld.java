@@ -7,7 +7,7 @@ import com.codename1.ui.Display;
 /**
  * Defines a GameWorld Object.
  */
-public class GameWorld extends Observable implements IGameWorld{	
+public class GameWorld extends Observable implements IGameWorld, ISound{	
 	private final int   INIT_LIVES = 3,
 		  				SCORE_A	   = 100,
 		  				SCORE_NPS  = 300;
