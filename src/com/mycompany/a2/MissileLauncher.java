@@ -29,6 +29,23 @@ public class MissileLauncher extends MoveableGameObject{
 		int originX = (int) (this.getLocation().getX() + p.getX() - (width/2)); 
 		int originY = (int) (this.getLocation().getY() + p.getY());
 		
+		int x = (int) (p.getX() + this.getLocation().getX());
+		int y = (int) (p.getY() + this.getLocation().getY());
+		
+		g.setColor(ColorUtil.GREEN);
+		g.fillArc(x-5, y-5, 10, 10, 0, 360);
+		g.setColor(ColorUtil.CYAN);
+		g.drawArc(x-5, y-5, 10, 10, 0, 360);
+		
+		g.setColor(ColorUtil.GRAY);		
+		double angle = Math.toRadians(90-this.getDirection());
+		double deltaX = Math.cos(angle);
+		double deltaY = Math.sin(angle);
+		g.drawLine(x, y, (int)(x+(20*deltaX)), (int)(y+(20*deltaY)));
+		
+		
+		// Our old missile launcher
+		/*
 		// Draw the barrel (lighter gray)
 		g.setColor(ColorUtil.GRAY);
 		g.fillRect(	originX, 
@@ -57,6 +74,7 @@ public class MissileLauncher extends MoveableGameObject{
 					12, 
 					315, 
 					270);
+		*/
 	}
 
 }
