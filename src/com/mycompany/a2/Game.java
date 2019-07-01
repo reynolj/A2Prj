@@ -19,6 +19,7 @@ public class Game extends Form implements Runnable{
 	private PointsView pv;
 	private BackgroundMusic bg;
 	private UITimer timer;
+	private boolean gamePaused = false;
 	
 	public Game() {
 		gw = GameWorld.getInstance();
@@ -67,7 +68,7 @@ public class Game extends Form implements Runnable{
 		myToolbar.addCommandToSideMenu(myUndo);
 		
 		//Sound on Command
-		SoundCommand setSound = new SoundCommand(gw);
+		SoundCommand setSound = new SoundCommand(this, gw);
 		CheckBox checkSoundOn = new CheckBox("Sound On");
 		setSound.putClientProperty("Sound On", checkSoundOn);
 		checkSoundOn.setSelected(true);
@@ -243,6 +244,14 @@ public class Game extends Form implements Runnable{
 		chk.getAllStyles().setBgColor(ColorUtil.BLUE);
 		chk.getAllStyles().setFgColor(ColorUtil.WHITE);
 	}
+	
+	public void setBGMusic(boolean soundOn) {
+		if (soundOn && !gamePaused) {
+			bg.play();
+		} else if (!soundOn && !gamePaused) {
+			bg.pause();
+		}
+	}
 
 	@Override
 	public void run() {
@@ -250,12 +259,16 @@ public class Game extends Form implements Runnable{
 	}
 	
 	public void resume() {
-		bg.play();
+		if (gw.getSound().equalsIgnoreCase("on")){
+			bg.play();
+		}
+		gamePaused = false;
 		timer.schedule(gw.getTickTime(), true, this);
 	}
 	
 	public void pause() {
 		bg.pause();
+		gamePaused = true;
 		timer.cancel();
 	}
 }

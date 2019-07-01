@@ -263,12 +263,13 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * Sound toggle
 	 * Toggles sound
 	 */
-	public void toggleSound() {
+	public boolean toggleSound() {
 		soundOn = !soundOn;
 		System.out.println("- TOGGLE SOUND");
 		System.out.println("Sound is: " + getSound());
 		System.out.println(); //for readability
 		updateViews();
+		return soundOn;
 	}
 	
 	//************************* Add Game Object Commands *******************************//
