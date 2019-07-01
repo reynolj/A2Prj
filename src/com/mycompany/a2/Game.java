@@ -13,11 +13,11 @@ import com.codename1.ui.plaf.Border;
 import com.codename1.ui.util.UITimer;
 import com.mycompany.a2.commands.*;
 
-public class Game extends Form implements Runnable{
+public class Game extends Form implements Runnable, ISound{
 	private GameWorld gw;	
 	private MapView mv;
 	private PointsView pv;
-	private BackgroundMusic bg;
+	//private BackgroundMusic bg;
 	private UITimer timer;
 	private boolean gamePaused = false;
 	
@@ -31,7 +31,7 @@ public class Game extends Form implements Runnable{
 
 		//*************************Background Music**************************************//
 		
-		bg = new BackgroundMusic("BloodSport.mp3");
+		//bg = new BackgroundMusic("BloodSport.mp3");
 		bg.play();
 		
 		//*************************End Background Music**********************************//

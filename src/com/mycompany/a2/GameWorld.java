@@ -418,8 +418,10 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 		} else {
 			points();
 			System.out.println("Game Over!");
-			if(soundOn)
+			if(soundOn) {
+				bg.pause();
 				gameOver.play();
+			}
 		}
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
