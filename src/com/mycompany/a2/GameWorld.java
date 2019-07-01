@@ -12,7 +12,7 @@ public class GameWorld extends Observable implements IGameWorld{
 		  				SCORE_A	   = 100,
 		  				SCORE_NPS  = 300;
 	
-	private final static int TICKTIME = 50;
+	private final static int TICKTIME = 20;
 	
 	private static GameWorld gw = null;
 	
@@ -101,7 +101,7 @@ public class GameWorld extends Observable implements IGameWorld{
 	 * return String
 	 */
 	public String getTime() {
-		return String.valueOf(clock);
+		return String.valueOf(clock/50);
 	}
 	
 	/**
@@ -950,7 +950,6 @@ public class GameWorld extends Observable implements IGameWorld{
 		System.out.println("- TICK");
 		// "tick" the clock
 		++clock;
-		
 		// We need another Vector to hold GameObjects that must be removed at the same time.
 		// We can't remove GameObjects inside of the foreach loop because it throws exceptions.
 		GameObjectCollection removeItems = new GameObjectCollection();
@@ -989,7 +988,7 @@ public class GameWorld extends Observable implements IGameWorld{
 				GameObject o = (GameObject) i.next();
 				
 				store.remove(o);
-			}
+			}	
 		}
 		
 		System.out.println("Game clock: " + clock);
