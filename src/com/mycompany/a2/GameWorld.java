@@ -893,6 +893,8 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 			PlayerShip.getInstance().turnLauncherLeft();
 			System.out.println("Player Missile Launcher turned Left. New direction: " 
 			                    + PlayerShip.getInstance().getLauncherDirection());
+			if(soundOn)
+				turnML.play();
 		} else {
 			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
 		}
@@ -912,6 +914,8 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 			PlayerShip.getInstance().turnLauncherRight();
 			System.out.println("Player Missile Launcher turned right. New direction: " 
 			                    + PlayerShip.getInstance().getLauncherDirection());
+			if(soundOn)
+				turnML.play();
 		} else {
 			System.out.println("ERROR: Cannot turn missile launcher. Player ship does not exist!");
 		}

@@ -9,5 +9,6 @@ public interface ISound {
 	public final SoundEffect npsExplode = new SoundEffect("Explosion2.mp3");
 	public final SoundEffect psExplode = new SoundEffect("Explosion3.mp3");
 	public final SoundEffect gameOver = new SoundEffect("GameOver.mp3");
+	public final SoundEffect turnML = new SoundEffect("Turn.mp3");
 	
 }
