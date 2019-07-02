@@ -173,9 +173,11 @@ public class Game extends Form implements Runnable, ISound{
 		
 		TurnLauncherLeftCommand myTurnLauncherLeft = new TurnLauncherLeftCommand(gw);
 		addKeyListener(44, myTurnLauncherLeft);
+		addKeyListener('<', myTurnLauncherLeft);
 		
 		TurnLauncherRightCommand myTurnLauncherRight = new TurnLauncherRightCommand(gw);
 		addKeyListener(46, myTurnLauncherRight);
+		addKeyListener('>', myTurnLauncherRight);
 		
 		LaunchNPSMissileCommand myLaunchMissile = new LaunchNPSMissileCommand(gw);
 		addKeyListener('L', myLaunchMissile);
