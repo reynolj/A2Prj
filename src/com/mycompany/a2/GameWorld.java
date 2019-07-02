@@ -321,15 +321,19 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 	 * Creates a new singleton PlayerShip object in the GameWorld. Adds it to the GameObject vector
 	 */
 	public void addPlayerShip() {
-		System.out.println("- ADD PS");
-		
-		if (PlayerShip.isMissing() == true) {
-			PlayerShip PS = PlayerShip.getInstance();
-			store.add(PS);
-			System.out.println("Your ship has spawned.");
-			System.out.println( PS );
+		if (playerLives > 0) {
+			System.out.println("- ADD PS");
+			
+			if (PlayerShip.isMissing() == true) {
+				PlayerShip PS = PlayerShip.getInstance();
+				store.add(PS);
+				System.out.println("Your ship has spawned.");
+				System.out.println( PS );
+			} else {
+				System.out.println("ERROR: Only one player ship allowed at one time.");
+			}
 		} else {
-			System.out.println("ERROR: Only one player ship allowed at one time.");
+			Dialog.show("No More Lives Left", "Please restart game to play again.", "OK", null);
 		}
 		System.out.println(); //for readability
 		updateViews();
@@ -422,6 +426,7 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 				bg.pause();
 				gameOver.play();
 			}
+			Dialog.show("Game Over", "You lost all of your lives. Game Over!", "OK", null);
 		}
 		
 		for ( IIterator i = store.getIterator(); i.hasNext(); ) {
