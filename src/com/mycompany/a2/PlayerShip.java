@@ -114,7 +114,7 @@ public class PlayerShip extends Ship implements ISteerable {
 	 */
 	public void turnRight() {
 		this.setDirection((this.getDirection()+365) % 360);
-		this.steerableMissileLauncher.turnRight();
+		//this.steerableMissileLauncher.turnRight();
 	}
 	
 	/**
@@ -126,7 +126,7 @@ public class PlayerShip extends Ship implements ISteerable {
 	 */
 	public void turnLeft() {
 		this.setDirection((this.getDirection()+355) % 360);	
-		this.steerableMissileLauncher.turnLeft();
+		//this.steerableMissileLauncher.turnLeft();
 	}
 	
 	/**
