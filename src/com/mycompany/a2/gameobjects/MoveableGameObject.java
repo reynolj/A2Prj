@@ -16,13 +16,27 @@ public abstract class MoveableGameObject extends GameObject implements IMoveable
 		this.direction = R.nextInt(MAX_DIR + 1);
 	}
 	
+	//*******************************Getter Methods******************************************//
+	
 	/**
-	 * Sets the speed of the MoveableObject
-	 * @param _speed
+	 * Returns the direction of the MoveableObject
+	 * @return direction (int 0-359)
 	 */
-	public void setSpeed(int _speed) {
-		speed = _speed;
+	public int getDirection() {
+		return direction;
 	}
+	/**
+	 * Returns the speed of the MoveableObject
+	 * @return speed (int)
+	 */
+	public int getSpeed() {
+		return speed;
+	}
+	
+	//*******************************End of Getter Methods***********************************//
+	
+	
+	//*******************************Setter Methods******************************************//
 	
 	/**
 	 * Sets the direction of the MoveableObject
@@ -33,24 +47,19 @@ public abstract class MoveableGameObject extends GameObject implements IMoveable
 	}
 	
 	/**
-	 * Returns the speed of the MoveableObject
-	 * @return speed (int)
+	 * Sets the speed of the MoveableObject
+	 * @param _speed
 	 */
-	public int getSpeed() {
-		return speed;
+	public void setSpeed(int _speed) {
+		speed = _speed;
 	}
 	
-	/**
-	 * Returns the direction of the MoveableObject
-	 * @return direction (int 0-359)
-	 */
-	public int getDirection() {
-		return direction;
-	}
-	
+	//*******************************End of Getter Methods***********************************//
+
 	/**
 	 * toString override method
 	 */
+	@Override
 	public String toString() {
 		String parentDesc = super.toString();
 		String localDesc = " speed = " + this.getSpeed() +

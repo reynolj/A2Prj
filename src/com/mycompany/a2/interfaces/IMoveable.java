@@ -5,5 +5,5 @@ package com.mycompany.a2.interfaces;
  *
  */
 public interface IMoveable {
-	void move(int time);
+	public void move(int time);
 }

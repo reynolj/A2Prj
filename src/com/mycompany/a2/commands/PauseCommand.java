@@ -21,14 +21,16 @@ public class PauseCommand extends Command {
 	public void actionPerformed(ActionEvent e) {
 		boolean timer_status = gw.getTimerStatus();
 		
-		if ( timer_status == ON ) {
-			g.pause();
-			gw.setTimerStatus(OFF);
-			((Button) e.getActualComponent()).setText("Unpause");
-		} else {
-			g.resume();
-			gw.setTimerStatus(ON);
-			((Button) e.getActualComponent()).setText("Pause");
+		if (e.getKeyEvent() != -1) {
+			if ( timer_status == ON ) {
+				g.pause();
+				gw.setTimerStatus(OFF);
+				((Button) e.getActualComponent()).setText("Unpause");
+			} else {
+				g.resume();
+				gw.setTimerStatus(ON);
+				((Button) e.getActualComponent()).setText("Pause");
+			}
 		}
 	}
 }

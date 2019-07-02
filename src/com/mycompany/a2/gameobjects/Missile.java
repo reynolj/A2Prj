@@ -25,6 +25,8 @@ public class Missile extends MoveableGameObject{
 		this.setColor(owner.getColor());
 	}
 	
+	//*******************************End of Getter Methods***********************************//
+	
 	/**
 	 * Returns the amount of fuel left in the missile. Used for removing 'spent' missiles from the game board.
 	 * @return remaining fuel
@@ -32,10 +34,35 @@ public class Missile extends MoveableGameObject{
 	public int getFuel() {
 		return this.fuelLevel;
 	}
-
+	
+	/**
+	 * Returns owner of missile. Useful for determining who's missile struck an item
+	 * @return owner (Ship object)
+	 */
+	public Ship getOwner() {
+		return this.owner;
+	}
+	
+	//*******************************End of Getter Methods***********************************//
+	
+	//*******************************Data Member Methods*************************************//
+	@Override
+	public void draw(Graphics g, Point2D p) {
+		int width = 2;
+		int height = 6;  
+		int originX = (int) (this.getLocation().getX() + p.getX() - width/2); 
+		int originY = (int) (this.getLocation().getY() + p.getY() - height/2);
+		g.setColor(this.getColor());
+		g.fillRect(	originX, 
+					originY, 
+					width, 
+					height);
+	}
+	
 	/**
 	 * toString override method
 	 */
+	@Override
 	public String toString() {
 		String parentDesc = super.toString();
 		String localDesc = " fuel = " + this.fuelLevel;
@@ -54,14 +81,6 @@ public class Missile extends MoveableGameObject{
 	}
 	
 	/**
-	 * Returns owner of missile. Useful for determining who's missile struck an item
-	 * @return owner (Ship object)
-	 */
-	public Ship getOwner() {
-		return this.owner;
-	}
-	
-	/**
 	 * Decrements or 'uses' a unit of fuel. Used for every tick of movement of a Missile.
 	 * An optional unit of fuel-use could be distance traveled.
 	 */
@@ -69,17 +88,5 @@ public class Missile extends MoveableGameObject{
 		this.fuelLevel--;
 	}
 	
-	@Override
-	public void draw(Graphics g, Point2D p) {
-		int width = 2;
-		int height = 6;  
-		int originX = (int) (this.getLocation().getX() + p.getX() - width/2); 
-		int originY = (int) (this.getLocation().getY() + p.getY() - height/2);
-		g.setColor(this.getColor());
-		g.fillRect(	originX, 
-					originY, 
-					width, 
-					height);
-	}
-	
+	//*******************************End of Data Member Methods******************************//
 }

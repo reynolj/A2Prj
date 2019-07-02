@@ -38,7 +38,6 @@ public class PointsView extends Container implements Observer {
 		myContainer.setLayout(new BoxLayout(BoxLayout.X_AXIS));
 		this.getAllStyles().setBorder(Border.createLineBorder(1,ColorUtil.BLACK));
 
-		
 		myContainer.add(scoreTextLabel);
 		myContainer.add(scoreLabel);
 		myContainer.add(livesTextLabel);

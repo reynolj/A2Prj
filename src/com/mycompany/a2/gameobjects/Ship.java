@@ -13,6 +13,8 @@ public abstract class Ship extends MoveableGameObject{
 		this.missileCount = 0;
 	}
 	
+	//*******************************Getter Methods******************************************//
+	
 	/**
 	 * Returns missileCount
 	 * @return missileCount int
@@ -21,6 +23,10 @@ public abstract class Ship extends MoveableGameObject{
 		return missileCount;
 	}
 	
+	//*******************************End of Getter Methods***********************************//
+	
+	//*******************************Setter Methods******************************************//
+	
 	/**
 	 * Sets missile count
 	 * @param count
@@ -28,6 +34,8 @@ public abstract class Ship extends MoveableGameObject{
 	public void setMissileCount(int count) {
 		this.missileCount = count;
 	}
+	
+	//*******************************End of Setter Methods***********************************//
 	
 	/**
 	 * Decrements missile count of the ship
@@ -39,11 +47,11 @@ public abstract class Ship extends MoveableGameObject{
 	/**
 	 * toString override method
 	 */
+	@Override
 	public String toString() {
 		String parentDesc = super.toString();
 		String localDesc = " missiles: " + missileCount;
 		
 		return parentDesc + localDesc;
 	}
-
 }

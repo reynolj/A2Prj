@@ -19,17 +19,6 @@ public class SpaceStation extends FixedGameObject {
 		this.blinkRate = R.nextInt(MAX_RATE + 1);
 		this.lightOn = true;
 	}
-	
-	/**
-	 * toString override method
-	 */
-	public String toString() {
-		String parentDesc = super.toString();
-		String localDesc = " rate = " + this.blinkRate + " light is " + ((this.lightOn == true) ? "on" : "off");
-		String header = "Station: ";
-			  
-		return header + parentDesc + localDesc;
-	}
 
 	/**
 	 * Toggle the light
@@ -46,6 +35,7 @@ public class SpaceStation extends FixedGameObject {
 		return this.blinkRate;
 	}
 	
+	@Override
 	public void draw(Graphics g, Point2D p) {
 		int originX = (int) (this.getLocation().getX() + p.getX());
 		int originY = (int) (this.getLocation().getY() + p.getY());
@@ -61,7 +51,6 @@ public class SpaceStation extends FixedGameObject {
 		int lightX = originX - lightRadius;
 		int lightY = originY + lightRadius;
 		
-		//System.out.println("Origin x,y: " + originX + ", " + originY);
 		g.setColor(this.getColor());
 		
 		//Top arc
@@ -72,7 +61,7 @@ public class SpaceStation extends FixedGameObject {
 				  0,
 				  180
 				);
-		//System.out.println("Starting x,y of spaceship: " + shipX + ", " + shipY);
+
 		//Bottom arc
 		g.fillArc(shipX,
 				  shipY,
@@ -102,8 +91,17 @@ public class SpaceStation extends FixedGameObject {
 					  360
 					);
 		}
-		//System.out.println("Starting x,y of light: " + lightX + ", " + lightY);
-
-
+	}
+	
+	/**
+	 * toString override method
+	 */
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		String localDesc = " rate = " + this.blinkRate + " light is " + ((this.lightOn == true) ? "on" : "off");
+		String header = "Station: ";
+			  
+		return header + parentDesc + localDesc;
 	}
 }

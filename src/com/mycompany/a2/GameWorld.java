@@ -139,6 +139,10 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 		return store;
 	}
 	
+	/**
+	 * Returns time interval
+	 * @return int
+	 */
 	public int getTickTime() {
 		return TICKTIME;
 	}
@@ -146,14 +150,26 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 	
 	//****************************Setter Methods****************************//
 	
+	/**
+	 * Sets time status
+	 * @param status
+	 */
 	public void setTimerStatus(boolean status) {
 		timerOn = status;
 	}
 	
+	/**
+	 * Sets width of GameWorld's width which is MapView's width
+	 * @param width
+	 */
 	public void setWidth(int width) {
 		mvWidth = width;
 	}
 	
+	/**
+	 * Sets width of GameWorld's height which is MapView's height
+	 * @param height
+	 */
 	public void setHeight(int height) {
 		mvHeight = height;
 	}
@@ -271,8 +287,9 @@ public class GameWorld extends Observable implements IGameWorld, ISound{
 	}
 	
 	/**
-	 * Sound toggle
-	 * Toggles sound
+	 * Toggles the game sound boolean from 
+	 * on to off  or
+	 * off to on
 	 */
 	public boolean toggleSound() {
 		soundOn = !soundOn;

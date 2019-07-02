@@ -180,17 +180,6 @@ public class PlayerShip extends Ship implements ISteerable {
 	
 	////////////End SteerableMissileLauncher Movement and Helper Methods////////////
 	
-	/**
-	 * toString override method
-	 */
-	public String toString() {
-		String parentDesc = super.toString();
-		String localDesc = " Missile launcher dir = " + this.getLauncherDirection();
-		String header = "Player Ship: ";
-		
-		return header + parentDesc + localDesc;
-	}
-	
 	@Override
 	public void draw(Graphics g, Point2D p) {
 		int[] xPoints = {0,0,5,5,7,7,31,31,33,33,38,38,33,33,31,31,30,29,28,27,26,23,19,15,12,11,10,9,8,7,7,5,5,0};
@@ -201,12 +190,21 @@ public class PlayerShip extends Ship implements ISteerable {
 			xPoints[i] += (this.getLocation().getX() + p.getX() + xOffset);
 			yPoints[i] += (this.getLocation().getY() + p.getY() + yOffset);
 		}
-		//System.out.println(xPoints.length + ", " + yPoints.length);
 		g.setColor(this.getColor());
 		g.fillPolygon(xPoints, yPoints, 34);
 		
 		this.steerableMissileLauncher.draw(g, p);
-		
 	}
 	
+	/**
+	 * toString override method
+	 */
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		String localDesc = " Missile launcher dir = " + this.getLauncherDirection();
+		String header = "Player Ship: ";
+		
+		return header + parentDesc + localDesc;
+	}
 }

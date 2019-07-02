@@ -18,7 +18,6 @@ public class Game extends Form implements Runnable, ISound{
 	private GameWorld gw;	
 	private MapView mv;
 	private PointsView pv;
-	//private BackgroundMusic bg;
 	private UITimer timer;
 	private boolean gamePaused = false;
 	
@@ -32,9 +31,8 @@ public class Game extends Form implements Runnable, ISound{
 
 		//*************************Background Music**************************************//
 		
-		//bg = new BackgroundMusic("BloodSport.mp3");
 		bg.play();
-		
+	
 		//*************************End Background Music**********************************//
 		
 		this.setLayout(new BorderLayout());

@@ -14,7 +14,6 @@ public class AddPlayerShipCommand extends Command {
 	public AddPlayerShipCommand(GameWorld gw) {
 		super("Add Player Ship");
 		this.gw = gw;
-	
 	}
 	
 	/**

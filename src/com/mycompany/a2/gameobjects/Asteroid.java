@@ -17,17 +17,9 @@ public class Asteroid extends MoveableGameObject{
 		this.size = R.nextInt(MAX_A_SIZE - MIN_A_SIZE + 1) + MIN_A_SIZE;
 	}
 	
-	/**
-	 * toString override method
+	/* (non-Javadoc)
+	 * @see com.mycompany.a2.gameobjects.GameObject#draw(com.codename1.ui.Graphics, com.codename1.ui.geom.Point2D)
 	 */
-	public String toString() {
-		String parentDesc = super.toString();
-		String localDesc = " size = " + this.size;
-		String header = "Asteroid: ";
-		
-		return header + parentDesc + localDesc;
-	}
-	
 	public void draw(Graphics g, Point2D p) {
 		int height  =  this.size + 30;
 		int width   =  this.size + 30;
@@ -41,5 +33,16 @@ public class Asteroid extends MoveableGameObject{
 				   height,
 				   0, 
 				   360);
+	}
+	
+	/**
+	 * toString override method
+	 */
+	public String toString() {
+		String parentDesc = super.toString();
+		String localDesc = " size = " + this.size;
+		String header = "Asteroid: ";
+		
+		return header + parentDesc + localDesc;
 	}
 }

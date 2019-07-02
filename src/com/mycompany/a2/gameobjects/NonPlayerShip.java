@@ -25,24 +25,6 @@ public class NonPlayerShip extends Ship{
 		this.missileLauncher.setSpeed(this.getSpeed());
 	}
 	
-	/**
-	 * Sets the SteerableMissileLauncher's new location after move.
-	 */
-	public void moveML() {
-		missileLauncher.setLocation(this.getLocation().getX(), this.getLocation().getY());
-	}
-	
-	/**
-	 * toString override method
-	 */
-	public String toString() {
-		String parentDesc = super.toString();
-		String localDesc = " size = " + this.size;
-		String header = "NPS: "; 
-		
-		return header + parentDesc + localDesc;
-	}
-	
 	@Override
 	public void draw(Graphics g, Point2D p) {
 		int height = this.size + 30; 
@@ -74,5 +56,23 @@ public class NonPlayerShip extends Ship{
 					140);
 		
 		this.missileLauncher.draw(g, p);
+	}	
+	
+	/**
+	 * Sets the SteerableMissileLauncher's new location after move.
+	 */
+	public void moveML() {
+		missileLauncher.setLocation(this.getLocation().getX(), this.getLocation().getY());
+	}
+	/**
+	 * toString override method
+	 */
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		String localDesc = " size = " + this.size;
+		String header = "NPS: "; 
+		
+		return header + parentDesc + localDesc;
 	}
 }

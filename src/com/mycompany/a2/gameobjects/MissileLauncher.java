@@ -14,21 +14,8 @@ public class MissileLauncher extends MoveableGameObject{
 		super();
 	}
 
-	/**
-	 * toString override method
-	 */
-	public String toString() {
-		String parentDesc = super.toString();
-		
-		return parentDesc;
-	}
-	
+	@Override
 	public void draw(Graphics g, Point2D p) {
-		int width = 6;
-		int height = 30;
-		int originX = (int) (this.getLocation().getX() + p.getX() - (width/2)); 
-		int originY = (int) (this.getLocation().getY() + p.getY());
-		
 		int x = (int) (p.getX() + this.getLocation().getX());
 		int y = (int) (p.getY() + this.getLocation().getY());
 		
@@ -42,39 +29,54 @@ public class MissileLauncher extends MoveableGameObject{
 		double deltaX = Math.cos(angle);
 		double deltaY = Math.sin(angle);
 		g.drawLine(x, y, (int)(x+(20*deltaX)), (int)(y+(20*deltaY)));
-		
-		
-		// Our old missile launcher
-		/*
-		// Draw the barrel (lighter gray)
-		g.setColor(ColorUtil.GRAY);
-		g.fillRect(	originX, 
-					originY, 
-					width, 
-					height);
-		// Draw the barrel's dark outline (black)
-		g.setColor(ColorUtil.BLACK);
-		g.drawRect(	originX, 
-					originY, 
-					width, 
-					height);
-		// Draw the turret (darker gray)
-		g.setColor(ColorUtil.rgb(64, 64, 64));
-		g.fillArc(	(int) (this.getLocation().getX() + p.getX() - 6 ), 
-					(int) (this.getLocation().getY() + p.getY() - 6 ), 
-					12, 
-					12, 
-					0, 
-					360);
-		// Draw the turret's outline (lighter gray)
-		g.setColor(ColorUtil.GRAY);
-		g.drawArc(	(int) (this.getLocation().getX() + p.getX() - 6 ),
-					(int) (this.getLocation().getY() + p.getY() - 6 ), 
-					12, 
-					12, 
-					315, 
-					270);
-		*/
 	}
-
+	
+	/**
+	 * toString override method
+	 */
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		
+		return parentDesc;
+	}
 }
+
+/* Removed, for each of translation. Model is much nicer than other one
+
+//int width = 6;
+//int height = 30;
+//int originX = (int) (this.getLocation().getX() + p.getX() - (width/2)); 
+//int originY = (int) (this.getLocation().getY() + p.getY());
+
+// Our old missile launcher
+/*
+// Draw the barrel (lighter gray)
+g.setColor(ColorUtil.GRAY);
+g.fillRect(	originX, 
+			originY, 
+			width, 
+			height);
+// Draw the barrel's dark outline (black)
+g.setColor(ColorUtil.BLACK);
+g.drawRect(	originX, 
+			originY, 
+			width, 
+			height);
+// Draw the turret (darker gray)
+g.setColor(ColorUtil.rgb(64, 64, 64));
+g.fillArc(	(int) (this.getLocation().getX() + p.getX() - 6 ), 
+			(int) (this.getLocation().getY() + p.getY() - 6 ), 
+			12, 
+			12, 
+			0, 
+			360);
+// Draw the turret's outline (lighter gray)
+g.setColor(ColorUtil.GRAY);
+g.drawArc(	(int) (this.getLocation().getX() + p.getX() - 6 ),
+			(int) (this.getLocation().getY() + p.getY() - 6 ), 
+			12, 
+			12, 
+			315, 
+			270);
+*/

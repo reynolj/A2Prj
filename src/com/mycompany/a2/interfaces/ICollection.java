@@ -3,5 +3,5 @@ package com.mycompany.a2.interfaces;
 public interface ICollection {
 	public void add(Object newObject);
 	public IIterator getIterator();
-	void remove(Object toRemove);
+	public void remove(Object toRemove);
 }

@@ -23,21 +23,26 @@ public abstract class GameObject implements IGameObject, IDrawable{
 		this.color = ColorUtil.rgb(0, 0, 0);
 	}
 	
-	/**
-	 * Sets the location for the new GameObject (random x and y)
-	 * @param x
-	 * @param y
-	 */
-	public void setLocation(double x, double y) {
-		location = new Point2D(x,y);
-	}
+	//*******************************Getter Methods******************************************//
 	
 	/**
-	 * Sets the color for all GameObjects to a default black (updated in the concrete object)
-	 * @param _color
+	 * Returns the color in a ColorUtil format
+	 * @return color (ColorUtil)
 	 */
-	public void setColor(int _color) {
-		color = _color;
+	public int getColor() {
+		return color;
+	}
+
+	/**
+	 * Returns the color in a more human readable format
+	 * @return color (separated r g b values)
+	 */
+	public String getColorRGB() {
+		String ret = "[" + ColorUtil.red(this.color) + 
+					 "," + ColorUtil.green(this.color) +
+					 "," + ColorUtil.blue(this.color) +
+					 "]";
+		return ret;
 	}
 	
 	/**
@@ -61,40 +66,46 @@ public abstract class GameObject implements IGameObject, IDrawable{
 		return ret;
 	}
 	
+	//*******************************End of Getter Methods***********************************//
+	
+	//*******************************Setter Methods******************************************//
 	/**
-	 * Returns the color in a ColorUtil format
-	 * @return color (ColorUtil)
+	 * Sets the location for the new GameObject (random x and y)
+	 * @param x
+	 * @param y
 	 */
-	public int getColor() {
-		return color;
+	public void setLocation(double x, double y) {
+		location = new Point2D(x,y);
 	}
+	
+	/**
+	 * Sets the color for all GameObjects to a default black (updated in the concrete object)
+	 * @param _color
+	 */
+	public void setColor(int _color) {
+		color = _color;
+	}
+	
+	//*******************************End of Setter Methods***********************************//
 
-	/**
-	 * Returns the color in a more human readable format
-	 * @return color (separated r g b values)
+	/* (non-Javadoc)
+	 * @see com.mycompany.a2.interfaces.IDrawable#draw(com.codename1.ui.Graphics, com.codename1.ui.geom.Point2D)
 	 */
-	public String getColorRGB() {
-		String ret = "[" + ColorUtil.red(this.color) + 
-					 "," + ColorUtil.green(this.color) +
-					 "," + ColorUtil.blue(this.color) +
-					 "]";
-		return ret;
-	}
-	
-	/**
-	 * toString override method
-	 */
-	public String toString() {
-		String ret = "loc = " + this.getLocationText() + 
-				  " color = " + this.getColorRGB(); 
-		return ret;
-	}
-	
 	public void draw(Graphics g, Point2D p) {
 		g.setColor(this.color);
 		g.drawRect( (int) ((this.getLocation().getX() - 5) + p.getX()), 
 					(int) ((this.getLocation().getY() - 5) + p.getY()), 
 					10, 
 					10);
+	}
+	
+	/**
+	 * toString override method
+	 */
+	@Override
+	public String toString() {
+		String ret = "loc = " + this.getLocationText() + 
+				  " color = " + this.getColorRGB(); 
+		return ret;
 	}
 }

@@ -21,10 +21,4 @@ public interface IGameObject {
 			   		  	MAX_RATE	 =   6, //	Maximum blink rate of SpaceStation (default: 6)
 			   		  	NPS_SMALL  	 =  15, //	NPS SMALL size (default: 15)
 			   		  	NPS_BIG	 	 =  25; //	NPS BIG size (default: 25)
-	
-	/*public final double 	MAX_X 	 = 1024.0,	//	Maximum X coordinate (default: 1024.0) 
-							MAX_Y 	 =  768.0,	//	Maximum Y coordinate (default: 768.0)
-						CENTER_X 	 =  512.0,	//	Center of game board X (default: 512.0)
-						CENTER_Y 	 =  384.0;	//	Center of game board Y (default: 384.0)*/
-	
 }

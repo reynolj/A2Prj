@@ -33,4 +33,11 @@ public class SteerableMissileLauncher extends MissileLauncher implements ISteera
 		this.setDirection((this.getDirection()+355) % 360);	
 		//System.out.println("Player Missile Launcher turned left. New direction: " + this.getDirection());
 	}
+	
+	@Override
+	public String toString() {
+		String parentDesc = super.toString();
+		
+		return parentDesc;
+	}
 }

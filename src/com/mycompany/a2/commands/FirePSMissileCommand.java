@@ -23,5 +23,4 @@ public class FirePSMissileCommand extends Command {
 	public void actionPerformed(ActionEvent e) {
 		gw.fireMissile();
 	}
-
 }

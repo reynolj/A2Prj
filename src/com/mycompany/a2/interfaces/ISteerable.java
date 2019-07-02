@@ -5,6 +5,6 @@ package com.mycompany.a2.interfaces;
  *
  */
 public interface ISteerable {
-	void turnLeft();
-	void turnRight();
+	public void turnLeft();
+	public void turnRight();
 }
